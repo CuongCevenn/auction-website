@@ -1,0 +1,77 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    /* box-sizing: border-box; */
+}
+
+
+
+.custom-row {
+    background-color: #000000;
+    height: 1000px;
+    /* width: 100%; */
+}
+
+.custom-col-1 {
+    background-color: #38924d;
+    /* border-radius: 1.5em; */
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+
+}
+
+.custom-span-1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+    align-content: top;
+    color: #FFFFFF;
+}
+
+.custom-div-1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: left;
+    margin: 20px 20px;
+}
+
+.custom-div-div-1 {
+    flex: 1;
+}
+
+.custom-col-2 {
+    background-color: rgb(127, 132, 192);
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+}
+
+.custom-p-1 {
+    margin: 0;
+    margin-left: 12px;
+}
+
+.custom-div-button-1 {
+    display: flex;
+    align-items: center;
+    background-color: #b8c587;
+    font-size: 15px;
+    border-radius: 0.5em;
+    padding-right: 20px;
+    border-style: solid;
+    border-color: #3e3f2d;
+}
+
+.custom-button-1 {
+    margin-left: auto;
+    padding: 20px 30px 20px 30px;
+}
+
+.custom-div-button-2 {
+    display: flex;
+    align-items: center;
+    background-color: #4cbdc5;
+    font-size: 15px;
+    border-radius: 0.5em;
+    padding-right: 20px;
+    border-style: solid;
+    border-color: #271310;
+}
