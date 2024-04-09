@@ -8,6 +8,7 @@ import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
+import { Status } from "../utils/status";
 
 const Modal = ({ type, title, children }) => {
   const { closeModal, currentModal } = useContext(ModalsContext);
@@ -151,13 +152,13 @@ const ItemModal = () => {
             className={`form-control ${valid}`}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            />
+          />
           <button
             type="submit"
             className="btn btn-primary"
             onClick={handleSubmitBid}
             disabled={isSubmitting}
-            >
+          >
             Submit bid
           </button>
           <div className="invalid-feedback">{feedback}</div>
@@ -168,6 +169,145 @@ const ItemModal = () => {
     </Modal>
   );
 };
+
+const SessionModal = () => {
+  const { closeModal } = useContext(ModalsContext);
+  const [auctionId, setAuctionId] = useState("1222");
+  const [beginningTime, setBeginningTime] = useState("");
+  const [endingTime, setEndingTime] = useState("");
+  const [status, setStatus] = useState(Status.PENDING);
+  const [startingPrice, setStartingPrice] = useState(0);
+  const [userId, setUserId] = useState("admin");
+  const [licensePlateId, setLicensePlateId] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8082/auction_session");
+        const data = await response.json();
+        console.log(data);
+
+        let randomId = generateRandomNumber(data);
+        setAuctionId(randomId);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const generateRandomNumber = (data) => {
+    let randomNum;
+    if (Array.isArray(data)) {
+      do {
+        randomNum = Math.floor(1000 + Math.random() * 9000).toString().slice(0, 4);
+      } while (data.some(item => item.auctionId === randomNum));
+    } else {
+      console.error('Data is not an array');
+      randomNum = "1000";
+    }
+    return randomNum;
+  };
+
+  const compareTime = (b, n, e) => {
+    if (n < b) {
+      return -1;
+    }
+    if (n > e) {
+      return 1;
+    }
+    return 0;
+  }
+
+  const handleSubmitSession = async (e) => {
+    let nowTime = new Date().getTime();
+    const compare = compareTime(beginningTime, nowTime.toString(), endingTime);
+    if (compare === 0) {
+      setStatus(Status.ACTIVE);
+    } else if (compare === 1) {
+      setStatus(Status.COMPLETE);
+    }
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "auctionId": auctionId,
+        "beginningTime": beginningTime,
+        "endingTime": endingTime,
+        "status": status,
+        "startingPrice": startingPrice,
+        "userId": userId,
+        "licensePlateId": licensePlateId
+      })
+    };
+    const response = await fetch('http://localhost:8082/auction_session', requestOptions);
+    // closeModal();
+    if (response.ok) {
+      alert("Tạo thành công phiên đấu giá!");
+      // return;
+    } else {
+      alert("Tạo thất bại!");
+      console.log("Tạo thất bại!");
+      // return;
+    }
+  }
+
+  const handleBeginningTime = (e) => {
+    const inputDateTime = e.target.value;
+    const formattedDateTime = inputDateTime.replace(' ', 'T');
+    setBeginningTime(formattedDateTime);
+  }
+
+  const handleEndingTime = (e) => {
+    const inputDateTime = e.target.value;
+    const formattedDateTime = inputDateTime.replace(' ', 'T');
+    setEndingTime(formattedDateTime);
+  }
+
+  return (
+    <Modal type={ModalTypes.SESSION} title="Create Session">
+      <div>
+        <h2>Create Modal</h2>
+      </div>
+      <div>
+        <form onSubmit={handleSubmitSession}>
+          <div>
+            <label>Nhập biển số xe</label>
+            <div>
+              <input type="text" placeholder="XX.XXX or XXXX ..." onChange={(e) => setLicensePlateId(e.target.value)} />
+            </div>
+          </div>
+          <div>
+            <label>Nhập thời điểm bắt đầu đấu giá</label>
+            <div>
+              <input type="text" placeholder="YYYY-MM-DD HH:mm:ss" onChange={(e) => handleBeginningTime(e)} />
+            </div>
+          </div>
+          <div>
+            <label>Nhập thời điểm kết thúc đấu giá</label>
+            <div>
+              <input type="text" placeholder="YYYY-MM-DD HH:mm:ss" onChange={(e) => handleEndingTime(e)} />
+            </div>
+          </div>
+          <div>
+            <label>Nhập giá trị ban đầu</label>
+            <div>
+              <input type="number" placeholder="1000..." onChange={(e) => setStartingPrice(e.target.value)} />
+            </div>
+          </div>
+          <div className="mb-5">
+            <input
+              type="submit"
+              value="KHỞI TẠO"
+            />
+          </div>
+        </form>
+      </div>
+    </Modal>
+  );
+}
 
 const SignUpModal = () => {
   const { closeModal } = useContext(ModalsContext);
@@ -231,4 +371,4 @@ const SignUpModal = () => {
   );
 };
 
-export { ItemModal, SignUpModal };
+export { ItemModal, SignUpModal, SessionModal };

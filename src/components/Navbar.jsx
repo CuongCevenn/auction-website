@@ -45,6 +45,14 @@ const Navbar = ({ admin }) => {
     }
   };
 
+  const handleSession = () => {
+    openModal(ModalTypes.SESSION);
+  }
+
+  const handleOpen = () => {
+    navigate(import.meta.env.BASE_URL + "session");
+  }
+
   return (
     <nav className="navbar navbar-dark bg-primary">
       <div className="container-fluid">
@@ -63,8 +71,8 @@ const Navbar = ({ admin }) => {
           {admin && (
             <button onClick={handleAdmin} className="btn btn-secondary me-2">{adminButtonText}</button>
           )}
-          <button className="btn btn-secondary me-2">Wallet</button>
-          <button className="btn btn-secondary me-2">About us</button>
+          <button onClick={handleSession} className="btn btn-secondary me-2">Create Session</button>
+          <button onClick={handleOpen} className="btn btn-secondary me-2">About us</button>
           <button onClick={handleAuth} className="btn btn-secondary me-2">{authButtonText}</button>
         </div>
       </div>
