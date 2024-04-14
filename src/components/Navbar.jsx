@@ -15,16 +15,10 @@ const Navbar = ({ admin }) => {
   const location = useLocation();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user && user.displayName != null) {
-        setUser(`Hi ${user.displayName}`);
-        setAuthButtonText("Sign out");
-      }
-    });
-
-    // Clean up the onAuthStateChanged listener when the component unmounts
-    return () => unsubscribe();
-  }, [user.displayName]);
+    if (localStorage.getItem("username")) {
+      setUser(localStorage.getItem("username"));
+    }
+  }, []);
 
   const handleAdmin = () => {
     if (location.pathname.includes("admin")) {
@@ -49,8 +43,38 @@ const Navbar = ({ admin }) => {
     openModal(ModalTypes.SESSION);
   }
 
+  const handleLP = () => {
+    openModal(ModalTypes.PLATE);
+  }
+
   const handleOpen = () => {
     navigate(import.meta.env.BASE_URL + "session");
+  }
+
+  const handleSignUp = () => {
+    openModal(ModalTypes.SIGN_UP);
+  }
+
+  const handleSignIn = () => {
+    openModal(ModalTypes.SIGN_IN);
+  }
+
+  const handleSignOut = () => {
+    setUser("");
+    localStorage.removeItem("username");
+    localStorage.removeItem("accountType");
+    localStorage.removeItem("fullName");
+    localStorage.removeItem("contactNumber");
+    localStorage.removeItem("address");
+    localStorage.removeItem("identityNumber");
+    localStorage.removeItem("email");
+    localStorage.removeItem("password");
+
+    navigate(import.meta.env.BASE_URL);
+  }
+
+  const handleInfo = () => {
+    openModal(ModalTypes.UPDATE);
   }
 
   return (
@@ -67,13 +91,28 @@ const Navbar = ({ admin }) => {
           The Auction App
         </div>
         <div className="row row-cols-auto">
-          <div className="navbar-brand">{user}</div>
-          {admin && (
-            <button onClick={handleAdmin} className="btn btn-secondary me-2">{adminButtonText}</button>
+
+          {!user && (
+            <div>
+              <button onClick={handleSignUp} className="btn btn-secondary me-2">SIGN UP</button>
+              <button onClick={handleSignIn} className="btn btn-secondary me-2">SIGN IN</button>
+            </div>
           )}
-          <button onClick={handleSession} className="btn btn-secondary me-2">Create Session</button>
-          <button onClick={handleOpen} className="btn btn-secondary me-2">About us</button>
-          <button onClick={handleAuth} className="btn btn-secondary me-2">{authButtonText}</button>
+
+          {/* {admin && (
+            <button onClick={handleAdmin} className="btn btn-secondary me-2">{adminButtonText}</button>
+          )} */}
+          {user && (
+            <div>
+              <div className="navbar-brand">
+                <button onClick={handleInfo} className="btn btn-secondary me-2">{user}</button>
+                <button onClick={handleSignOut} className="btn btn-secondary me-2">SIGN OUT</button>
+              </div>
+              <button onClick={handleSession} className="btn btn-secondary me-2">Create Session</button>
+              <button onClick={handleLP} className="btn btn-secondary me-2">Register License Plate</button>
+              <button onClick={handleOpen} className="btn btn-secondary me-2">About us</button>
+            </div>
+          )}
         </div>
       </div>
     </nav>

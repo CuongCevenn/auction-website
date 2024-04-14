@@ -3,22 +3,10 @@
     flex-direction: column;
     margin: 0;
     /* box-sizing: border-box; */
-}
-
-
-
-.custom-row {
-    background-color: #000000;
-    height: 1000px;
-    /* width: 100%; */
-}
-
-.custom-col-1 {
     background-color: #38924d;
     /* border-radius: 1.5em; */
     text-align: center;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
-
 }
 
 .custom-span-1 {

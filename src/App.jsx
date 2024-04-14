@@ -11,7 +11,7 @@ import { AutoSignIn } from "./firebase/AutoSignIn";
 import { ItemsProvider } from "./contexts/ItemsProvider";
 import { ModalsProvider } from "./contexts/ModalsProvider";
 import Navbar from "./components/Navbar";
-import { SignUpModal, SessionModal } from "./components/Modal";
+import { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal } from "./components/Modal";
 import HomePage from "./pages/Home";
 import AdminPage from "./pages/Admin";
 import Footer from "./components/Footer";
@@ -39,8 +39,11 @@ function App() {
     <Providers>
       <Router>
         <Navbar admin={admin} />
+        <UpdateModal />
+        <SignInModal />
         <SignUpModal />
         <SessionModal />
+        <LicensePlateModal />
         <Routes>
           <Route path={import.meta.env.BASE_URL} Component={Dashboard} />
           <Route path={import.meta.env.BASE_URL + "session"} Component={Session} />
