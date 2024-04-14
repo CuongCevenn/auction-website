@@ -78,7 +78,7 @@ const Navbar = ({ admin }) => {
   }
 
   return (
-    <nav className="navbar navbar-dark bg-primary">
+    <nav className="navbar navbar-dark bg-primary" style={{ marginBottom: "20px" }}>
       <div className="container-fluid">
         <div className="navbar-brand mb-0 h1 me-auto">
           <img
@@ -87,23 +87,21 @@ const Navbar = ({ admin }) => {
             width="30"
             height="24"
             className="d-inline-block align-text-top"
+            style={{ marginRight: "10px" }}
           />
-          The Auction App
+          <span style={{ fontWeight: "bold" }}>The Auction App</span>
         </div>
-        <div className="row row-cols-auto">
-
+        <div className="row row-cols-auto" style={{ alignItems: "center" }}>
+  
           {!user && (
             <div>
               <button onClick={handleSignUp} className="btn btn-secondary me-2">SIGN UP</button>
               <button onClick={handleSignIn} className="btn btn-secondary me-2">SIGN IN</button>
             </div>
           )}
-
-          {/* {admin && (
-            <button onClick={handleAdmin} className="btn btn-secondary me-2">{adminButtonText}</button>
-          )} */}
+  
           {user && (
-            <div>
+            <div className="d-flex align-items-center">
               <div className="navbar-brand">
                 <button onClick={handleInfo} className="btn btn-secondary me-2">{user}</button>
                 <button onClick={handleSignOut} className="btn btn-secondary me-2">SIGN OUT</button>
@@ -117,6 +115,7 @@ const Navbar = ({ admin }) => {
       </div>
     </nav>
   );
+  
 };
 
 Navbar.propTypes = {

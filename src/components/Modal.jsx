@@ -172,7 +172,7 @@ const ItemModal = () => {
 
 const SessionModal = () => {
   const { closeModal } = useContext(ModalsContext);
-  const [auctionId, setAuctionId] = useState("1222");
+  const [auctionId, setAuctionId] = useState("");
   const [beginningTime, setBeginningTime] = useState("");
   const [endingTime, setEndingTime] = useState("");
   const [status, setStatus] = useState(Status.PENDING);
@@ -209,16 +209,6 @@ const SessionModal = () => {
     }
     return randomNum;
   };
-
-  const compareTime = (b, n, e) => {
-    if (n < b) {
-      return -1;
-    }
-    if (e < n) {
-      return 1;
-    }
-    return 0;
-  }
 
   const handleSubmitSession = async (e) => {
     e.preventDefault();
@@ -271,40 +261,57 @@ const SessionModal = () => {
 
   return (
     <Modal type={ModalTypes.SESSION} title="Create Session">
-      <div>
-        <form onSubmit={handleSubmitSession}>
-          <div>
-            <label>Nhập biển số xe</label>
-            <div>
-              <input type="text" placeholder="XX.XXX or XXXX ..." onChange={(e) => setLicensePlateId(e.target.value)} required />
-            </div>
-          </div>
-          <div>
-            <label>Nhập thời điểm bắt đầu đấu giá</label>
-            <div>
-              <input type="text" placeholder="YYYY-MM-DD HH:mm:ss" onChange={(e) => handleBeginningTime(e)} required />
-            </div>
-          </div>
-          <div>
-            <label>Nhập thời điểm kết thúc đấu giá</label>
-            <div>
-              <input type="text" placeholder="YYYY-MM-DD HH:mm:ss" onChange={(e) => handleEndingTime(e)} required />
-            </div>
-          </div>
-          <div>
-            <label>Nhập giá trị ban đầu</label>
-            <div>
-              <input type="number" placeholder="1000..." onChange={(e) => setStartingPrice(e.target.value)} required />
-            </div>
-          </div>
-          <div className="mb-5">
-            <input
-              type="submit"
-              value="KHỞI TẠO"
-            />
-          </div>
-        </form>
-      </div>
+      <form onSubmit={handleSubmitSession}>
+        <div className="form-group">
+          <label htmlFor="licensePlateId">License Plate Number</label>
+          <input
+            type="text"
+            id="licensePlateId"
+            className="form-control"
+            placeholder="XX.XXX or XXXX ..."
+            value={licensePlateId}
+            onChange={(e) => setLicensePlateId(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="beginningTime">Beginning Time</label>
+          <input
+            type="text"
+            id="beginningTime"
+            className="form-control"
+            placeholder="YYYY-MM-DD HH:mm:ss"
+            onChange={(e) => handleBeginningTime(e)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="endingTime">Ending Time</label>
+          <input
+            type="text"
+            id="endingTime"
+            className="form-control"
+            placeholder="YYYY-MM-DD HH:mm:ss"
+            onChange={(e) => handleEndingTime(e)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="startingPrice">Starting Price</label>
+          <input
+            type="number"
+            id="startingPrice"
+            className="form-control"
+            placeholder="1000..."
+            value={startingPrice}
+            onChange={(e) => setStartingPrice(e.target.value)}
+            required
+          />
+        </div>
+        <div className="text-center mt-4">
+          <button type="submit" className="btn btn-primary">Create Session</button>
+        </div>
+      </form>
     </Modal>
   );
 }
@@ -334,54 +341,61 @@ const LicensePlateModal = () => {
     closeModal();
     if (response.ok) {
       alert("Đăng ký thành công biển số xe!");
-      // return;
     } else {
       alert("Đăng ký thất bại!");
       console.log("Tạo thất bại!");
-      // return;
     }
   }
 
   return (
     <Modal type={ModalTypes.PLATE} title="Register License Plate">
-      <div>
+      <div className="modal-body">
         <h2>Đăng ký biển số xe</h2>
-      </div>
-      <div>
         <form onSubmit={handleSubmitLP}>
-          <div>
-            <label>Nhập biển số xe</label>
-            <div>
-              <input type="text" placeholder="XX.XXX or XXXX ..." onChange={(e) => setLicensePlateId(e.target.value)} required />
-            </div>
-          </div>
-          <div>
-            <label>Phương tiện</label>
-            <div>
-              <select name="meanOfTransport" onChange={(e) => setMeanOfTransport(e.target.value)}>
-                <option value="motorbike">Motorbike</option>
-                <option value="car">Car</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <label>Mã Tỉnh</label>
-            <div>
-              <input type="text" placeholder="YYYY-MM-DD HH:mm:ss" onChange={(e) => setLicensePlateProvince(e.target.value)} required />
-            </div>
-          </div>
-          <div className="mb-5">
+          <div className="form-group">
+            <label htmlFor="licensePlateId">License Plate Number</label>
             <input
-              type="submit"
-              value="ĐĂNG KÝ"
+              type="text"
+              id="licensePlateId"
+              className="form-control"
+              placeholder="XX.XXX or XXXX ..."
+              value={licensePlateId}
+              onChange={(e) => setLicensePlateId(e.target.value)}
+              required
             />
+          </div>
+          <div className="form-group">
+            <label htmlFor="meanOfTransport">Mean of Transport</label>
+            <select
+              id="meanOfTransport"
+              className="form-control"
+              value={meanOfTransport}
+              onChange={(e) => setMeanOfTransport(e.target.value)}
+            >
+              <option value="motorbike">Motorbike</option>
+              <option value="car">Car</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="licensePlateProvince">Province Code</label>
+            <input
+              type="text"
+              id="licensePlateProvince"
+              className="form-control"
+              placeholder="Province code"
+              value={licensePlateProvince}
+              onChange={(e) => setLicensePlateProvince(e.target.value)}
+              required
+            />
+          </div>
+          <div className="text-center mt-4">
+            <button type="submit" className="btn btn-primary">Register</button>
           </div>
         </form>
       </div>
     </Modal>
   );
 }
-
 const SignUpModal = () => {
   const { closeModal } = useContext(ModalsContext);
   const [username, setUsername] = useState("");
@@ -442,102 +456,96 @@ const SignUpModal = () => {
       <div className="modal-body">
         <p>Please fill in the following information to sign up:</p>
         <form onSubmit={handleSignUp}>
-          <div>
-            <label>Username</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="username-input">Username</label>
             <input
-              autoFocus
               id="username-input"
               type="text"
+              className="form-control"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
-          <div>
-            <label>Full Name</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="fullName-input">Full Name</label>
             <input
               id="fullName-input"
               type="text"
+              className="form-control"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
             />
-
           </div>
-          <div>
-            <label>Phone Number</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="phone-input">Phone Number</label>
             <input
               id="phone-input"
               type="tel"
+              className="form-control"
               value={contactNumber}
               onChange={(e) => setContactNumber(e.target.value)}
               required
             />
-
           </div>
-          <div>
-            <label>Email Address</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="email-input">Email Address</label>
             <input
               id="email-input"
               type="email"
+              className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-
           </div>
-          <div>
-            <label>Password</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="password-input">Password</label>
             <input
               id="password-input"
               type="password"
+              className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-
           </div>
-          <div>
-            <label>Confirm Password</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="confirmPassword-input">Confirm Password</label>
             <input
               id="confirmPassword-input"
               type="password"
+              className="form-control"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-
           </div>
-          <div>
-            <label>Address</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="address-input">Address</label>
             <input
               id="address-input"
               type="text"
+              className="form-control"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
             />
           </div>
-          <div>
-            <label>Identity Number</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="idn-input">Identity Number</label>
             <input
               id="idn-input"
               type="text"
+              className="form-control"
               value={identityNumber}
               onChange={(e) => setIdentityNumber(e.target.value)}
               required
             />
           </div>
           {error && (
-            <div>
+            <div className="alert alert-danger" role="alert">
               {error}
             </div>
           )}
@@ -597,8 +605,7 @@ const SignInModal = () => {
     return result === "Đăng nhập thành công";
   }
 
-  const handleSignUp = async (e) => {
-
+  const handleSignIn = async (e) => {
     e.preventDefault();
 
     if (!username || !password) {
@@ -640,35 +647,34 @@ const SignInModal = () => {
   return (
     <Modal type={ModalTypes.SIGN_IN} title="Sign in for Auction">
       <div className="modal-body">
-        <form onSubmit={handleSignUp}>
-          <div>
-            <label>Username</label>
-            <br />
+        <form onSubmit={handleSignIn}>
+          <div className="form-group">
+            <label htmlFor="username-input">Username</label>
             <input
               autoFocus
               id="username-input"
               type="text"
+              className="form-control"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
 
-          <div>
-            <label>Password</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="password-input">Password</label>
             <input
               id="password-input"
               type="password"
+              className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-
           </div>
 
           {error && (
-            <div>
+            <div className="alert alert-danger" role="alert">
               {error}
             </div>
           )}
@@ -726,11 +732,10 @@ const UpdateModal = () => {
     const result = await response.json();
     closeModal();
     if (response.ok) {
-      alert("Đăng ký tài khoản thành công!");
+      alert("Update successful!");
     } else {
-      alert("Đăng ký tài khoản thất bại!");
+      alert("Update failed!");
     }
-
   };
 
   return (
@@ -738,78 +743,75 @@ const UpdateModal = () => {
       <div className="modal-body">
         <p>Update your information here</p>
         <form onSubmit={handleUpdate}>
-          <div>
-            <label>Username</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="username-input">Username</label>
             <input
               autoFocus
               id="username-input"
               type="text"
+              className="form-control"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
-          <div>
-            <label>Full Name</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="fullName-input">Full Name</label>
             <input
               id="fullName-input"
               type="text"
+              className="form-control"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
             />
-
           </div>
-          <div>
-            <label>Phone Number</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="phone-input">Phone Number</label>
             <input
               id="phone-input"
               type="tel"
+              className="form-control"
               value={contactNumber}
               onChange={(e) => setContactNumber(e.target.value)}
               required
             />
-
           </div>
-          <div>
-            <label>Email Address</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="email-input">Email Address</label>
             <input
               id="email-input"
               type="email"
+              className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-
           </div>
-          <div>
-            <label>Address</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="address-input">Address</label>
             <input
               id="address-input"
               type="text"
+              className="form-control"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
             />
           </div>
-          <div>
-            <label>Identity Number</label>
-            <br />
+          <div className="form-group">
+            <label htmlFor="idn-input">Identity Number</label>
             <input
               id="idn-input"
               type="text"
+              className="form-control"
               value={identityNumber}
               onChange={(e) => setIdentityNumber(e.target.value)}
               required
             />
           </div>
           {error && (
-            <div>
+            <div className="text-danger">
               {error}
             </div>
           )}
