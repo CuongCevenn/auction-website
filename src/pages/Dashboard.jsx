@@ -26,6 +26,22 @@ function Dashboard() {
         }
     }
 
+    function admin() {
+        if (localStorage.getItem("accountType") === "admin") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function pen(item) {
+        return item.status === "PENDING";
+    }
+
+    function act(item) {
+        return item.status === "ACTIVE";
+    }
+
     const handleViewClick = async (auctionId) => {
         localStorage.setItem("auctionId", auctionId);
         try {
@@ -38,6 +54,86 @@ function Dashboard() {
             localStorage.setItem("userId", data.userId);
             localStorage.setItem("licensePlateId", data.licensePlateId);
             handleOpen();
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    const handleSetStatus = async (item) => {
+        try {
+            let auctionId = item.auctionId;
+            let beginningTime = item.beginningTime;
+            let endingTime = item.endingTime;
+            let status = item.status;
+            let startingPrice = item.startingPrice;
+            let userId = item.userId;
+            let licensePlateId = item.licensePlateId;
+
+            const requestOptions = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    "auctionId": auctionId,
+                    "beginningTime": beginningTime,
+                    "endingTime": endingTime,
+                    "status": "ACTIVE",
+                    "startingPrice": startingPrice,
+                    "userId": userId,
+                    "licensePlateId": licensePlateId
+                })
+            };
+            const response = await fetch(`http://localhost:8082/auction_session/${auctionId}`, requestOptions);
+
+            if (response.ok) {
+                alert("Xác nhận thành công");
+                window.location.reload();
+            } else {
+                alert("Xác nhận thất bại!");
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    const handleDenyStatus = async (item) => {
+        try {
+            let auctionId = item.auctionId;
+            let beginningTime = item.beginningTime;
+            let endingTime = item.endingTime;
+            let status = item.status;
+            let startingPrice = item.startingPrice;
+            let userId = item.userId;
+            let licensePlateId = item.licensePlateId;
+
+            const requestOptions = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    "auctionId": auctionId,
+                    "beginningTime": beginningTime,
+                    "endingTime": endingTime,
+                    "status": "PENDING",
+                    "startingPrice": startingPrice,
+                    "userId": userId,
+                    "licensePlateId": licensePlateId
+                })
+            };
+            const response = await fetch(`http://localhost:8082/auction_session/${auctionId}`, requestOptions);
+
+            if (response.ok) {
+                alert("Hủy xác nhận thành công");
+                window.location.reload();
+            } else {
+                alert("Hủy xác nhận thất bại!");
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    const handleDelete = async (auctionId) => {
+        try {
+
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -82,12 +178,32 @@ function Dashboard() {
                             <p className="custom-p-1">License plate: {item.licensePlateId}</p>
                             <p className="custom-p-1">Status: {item.status}</p>
                         </div>
-                        <Button
-                            variant="outline-secondary"
-                            className="custom-button"
-                            onClick={() => handleViewClick(item.auctionId)}
-                        >View</Button>
-                        {checkUser(item.userId) && (
+                        {(signIn() && !admin()) && (
+                            <Button
+                                variant="outline-secondary"
+                                className="custom-button"
+                                onClick={() => handleViewClick(item.auctionId)}
+                            >View</Button>
+                        )}
+
+                        {admin() && (
+                            <div>
+                                <Button
+                                    variant="primary"
+                                    className="custom-button"
+                                    onClick={() => handleSetStatus(item)}
+                                    disabled={!pen(item)}
+                                >Accept</Button>
+                                <Button
+                                    variant="secondary"
+                                    className="custom-button"
+                                    onClick={() => handleDenyStatus(item)}
+                                    disabled={!act(item)}
+                                >Deny</Button>
+                            </div>
+                        )}
+
+                        {(checkUser(item.userId) || admin()) && (
                             <Button
                                 variant="danger"
                                 className="custom-button"

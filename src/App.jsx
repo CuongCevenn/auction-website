@@ -11,15 +11,15 @@ import { AutoSignIn } from "./firebase/AutoSignIn";
 import { ItemsProvider } from "./contexts/ItemsProvider";
 import { ModalsProvider } from "./contexts/ModalsProvider";
 import Navbar from "./components/Navbar";
-import { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewLPModal } from "./components/Modal";
+import { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewLPModal, ViewModal } from "./components/Modal";
 import AdminPage from "./pages/Admin";
 import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
 import Session from "./pages/Session";
+import UserManage from "./pages/UserManage";
 
 function App() {
   const demo = true;
-
   const { admin } = AutoSignIn();
 
   const Providers = ({ children }) => {
@@ -44,18 +44,11 @@ function App() {
         <SessionModal />
         <LicensePlateModal />
         <ViewLPModal />
+        <ViewModal />
         <Routes>
           <Route path={import.meta.env.BASE_URL} Component={Dashboard} />
           <Route path={import.meta.env.BASE_URL + "session"} Component={Session} />
-          <Route
-            exact
-            path={import.meta.env.BASE_URL + "admin"}
-            element={
-              <ProtectedRoute condition={admin}>
-                <AdminPage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path={import.meta.env.BASE_URL + "admin"} Component={UserManage} />
         </Routes>
       </Router>
       <Footer />

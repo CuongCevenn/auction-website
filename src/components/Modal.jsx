@@ -83,14 +83,6 @@ const SessionModal = () => {
   const handleSubmitSession = async (e) => {
     e.preventDefault();
 
-    let nowTime = new Date().getTime();
-    // const compare = compareTime(beginningTime, nowTime.toString(), endingTime);
-    // if (compare === 0) {
-    //   setStatus(Status.ACTIVE);
-    // } else if (compare === 1) {
-    //   setStatus(Status.COMPLETE);
-    // }
-
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -117,14 +109,14 @@ const SessionModal = () => {
 
   const handleBeginningTime = (e) => {
     const inputDateTime = e.target.value;
-    const formattedDateTime = inputDateTime.replace(' ', 'T');
-    setBeginningTime(formattedDateTime);
+    // const formattedDateTime = inputDateTime.replace(' ', 'T');
+    setBeginningTime(inputDateTime);
   }
 
   const handleEndingTime = (e) => {
     const inputDateTime = e.target.value;
-    const formattedDateTime = inputDateTime.replace(' ', 'T');
-    setEndingTime(formattedDateTime);
+    // const formattedDateTime = inputDateTime.replace(' ', 'T');
+    setEndingTime(inputDateTime);
   }
 
   return (
@@ -649,7 +641,7 @@ const UpdateModal = () => {
       return;
     }
     const requestOptions = {
-      method: 'POST',
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         "username": username,
@@ -687,6 +679,7 @@ const UpdateModal = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              disabled
             />
           </div>
           <div className="form-group">
@@ -767,4 +760,164 @@ const UpdateModal = () => {
   );
 }
 
-export { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewLPModal };
+const ViewModal = () => {
+  const { closeModal } = useContext(ModalsContext);
+  const [username, setUsername] = useState(localStorage.getItem("tempUsername"));
+  const [accountType, setAccountType] = useState(localStorage.getItem("tempAccountType"));
+  const [fullName, setFullName] = useState(localStorage.getItem("tempFullName"));
+  const [contactNumber, setContactNumber] = useState(localStorage.getItem("tempContactNumber"));
+  const [address, setAddress] = useState(localStorage.getItem("tempAddress"));
+  const [identityNumber, setIdentityNumber] = useState(localStorage.getItem("tempIdentityNumber"));
+  const [email, setEmail] = useState(localStorage.getItem("tempEmail"));
+  const [error, setError] = useState("");
+
+  // useEffect(() => {
+  //   setUsername(localStorage.getItem("tempUsername"));
+  //   setAccountType(localStorage.getItem("tempAccountType"));
+  //   setFullName(localStorage.getItem("tempFullName"));
+  //   setContactNumber(localStorage.getItem("tempContactNumber"));
+  //   setAddress(localStorage.getItem("tempAddress"));
+  //   setIdentityNumber(localStorage.getItem("tempIdentityNumber"));
+  //   setEmail(localStorage.getItem("tempEmail"));
+  // }, []);
+
+
+  const handleUpdate = async (e) => {
+
+    if (!username || !fullName || !contactNumber || !address || !identityNumber || !email) {
+      setError("All fields are necessary.");
+      return;
+    }
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "username": username,
+        "password": localStorage.getItem("tempPassword"),
+        "accountType": accountType,
+        "fullname": fullName,
+        "contactNumber": contactNumber,
+        "address": address,
+        "identityNumber": identityNumber,
+        "email": email
+      })
+    };
+    const response = await fetch('http://localhost:8082/user', requestOptions);
+    const result = await response.json();
+    closeModal();
+    if (response.ok) {
+      alert("Update successful!");
+    } else {
+      alert("Update failed!");
+    }
+  };
+
+  return (
+    <Modal type={ModalTypes.VIEW_USER} title="User Information">
+      <div className="modal-body">
+        <p>Update your information here</p>
+        <form onSubmit={handleUpdate}>
+          <div className="form-group">
+            <label htmlFor="username-input">Username</label>
+            <input
+              autoFocus
+              id="username-input"
+              type="text"
+              className="form-control"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              disabled
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="accountType-input">Account Type</label>
+            <input
+              autoFocus
+              id="accountType-input"
+              type="text"
+              className="form-control"
+              value={accountType}
+              required
+              disabled
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="fullName-input">Full Name</label>
+            <input
+              id="fullName-input"
+              type="text"
+              className="form-control"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone-input">Phone Number</label>
+            <input
+              id="phone-input"
+              type="tel"
+              className="form-control"
+              value={contactNumber}
+              onChange={(e) => setContactNumber(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email-input">Email Address</label>
+            <input
+              id="email-input"
+              type="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address-input">Address</label>
+            <input
+              id="address-input"
+              type="text"
+              className="form-control"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="idn-input">Identity Number</label>
+            <input
+              id="idn-input"
+              type="text"
+              className="form-control"
+              value={identityNumber}
+              onChange={(e) => setIdentityNumber(e.target.value)}
+              required
+            />
+          </div>
+          {error && (
+            <div className="text-danger">
+              {error}
+            </div>
+          )}
+
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="btn btn-primary"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </Modal>
+  );
+}
+
+export { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewLPModal, ViewModal };

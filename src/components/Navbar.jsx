@@ -3,12 +3,16 @@ import PropTypes from "prop-types";
 import { useNavigate, useLocation } from "react-router";
 import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
-import { Modal } from "react-bootstrap";
 
 const Navbar = ({ admin }) => {
   const openModal = useContext(ModalsContext).openModal;
   const navigate = useNavigate();
   const [user, setUser] = useState("");
+  const [userManage, setUserManage] = useState("User Manage");
+
+  function admin() {
+    return localStorage.getItem("accountType") === "admin";
+  }
 
   useEffect(() => {
     if (localStorage.getItem("username")) {
@@ -50,6 +54,16 @@ const Navbar = ({ admin }) => {
     openModal(ModalTypes.UPDATE);
   }
 
+  const handleUser = () => {
+    if (userManage === "User Manage") {
+      setUserManage("Dashboard");
+      navigate(import.meta.env.BASE_URL + "admin");
+    } else {
+      setUserManage("User Manage");
+      navigate(import.meta.env.BASE_URL);
+    }
+  }
+
   return (
     <nav className="navbar navbar-dark bg-primary" style={{ marginBottom: "20px" }}>
       <div className="container-fluid">
@@ -79,8 +93,15 @@ const Navbar = ({ admin }) => {
                 <button onClick={handleInfo} className="btn btn-secondary me-2">{user}</button>
                 <button onClick={handleSignOut} className="btn btn-secondary me-2">SIGN OUT</button>
               </div>
-              <button onClick={handleLP} className="btn btn-secondary me-2">Register License Plate</button>
-              <button onClick={handleViewLP} className="btn btn-secondary me-2">Find License Plate</button>
+              {admin() && (
+                <button onClick={handleUser} className="btn btn-secondary me-2">{userManage}</button>
+              )}
+              {!admin() && (
+                <div>
+                  <button onClick={handleLP} className="btn btn-secondary me-2">Register License Plate</button>
+                  <button onClick={handleViewLP} className="btn btn-secondary me-2">Find License Plate</button>
+                </div>
+              )}
             </div>
           )}
         </div>

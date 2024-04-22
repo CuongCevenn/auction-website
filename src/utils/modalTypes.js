@@ -6,5 +6,6 @@ export const ModalTypes = {
   SESSION: "session",
   UPDATE: "update account",
   VIEW_PLATE: "view license plate",
+  VIEW_USER: "view user account",
   NONE: null,
 };
