@@ -23,14 +23,14 @@ function UserManage() {
     }, []);
 
     const handleViewButton = async (item) => {
-        localStorage.setItem("tempUsername", item.username);
-        localStorage.setItem("tempAccountType", item.accountType);
-        localStorage.setItem("tempFullName", item.fullname);
-        localStorage.setItem("tempContactNumber", item.contactNumber);
-        localStorage.setItem("tempAddress", item.address);
-        localStorage.setItem("tempIdentityNumber", item.identityNumber);
-        localStorage.setItem("tempEmail", item.email);
-        localStorage.setItem("tempPassword", item.password);
+        // localStorage.setItem("tempUsername", item.username);
+        // localStorage.setItem("tempAccountType", item.accountType);
+        // localStorage.setItem("tempFullName", item.fullname);
+        // localStorage.setItem("tempContactNumber", item.contactNumber);
+        // localStorage.setItem("tempAddress", item.address);
+        // localStorage.setItem("tempIdentityNumber", item.identityNumber);
+        // localStorage.setItem("tempEmail", item.email);
+        // localStorage.setItem("tempPassword", item.password);
 
         openModal(ModalTypes.VIEW_USER);
     }

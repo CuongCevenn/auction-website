@@ -14,7 +14,7 @@ const Modal = ({ type, title, children }) => {
     <div
       className="modal fade show"
       style={{ display: "block" }}
-      onClick={closeModal}
+    // onClick={closeModal}
     >
       <div
         className="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -49,6 +49,7 @@ const SessionModal = () => {
   const [startingPrice, setStartingPrice] = useState(0);
   const [userId, setUserId] = useState(localStorage.getItem("username"));
   const [licensePlateId, setLicensePlateId] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,8 +81,25 @@ const SessionModal = () => {
     return randomNum;
   };
 
+  function checkLP(licensePlateId) {
+    const data = JSON.parse(localStorage.getItem("license"));
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].licensePlateId === licensePlateId) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   const handleSubmitSession = async (e) => {
     e.preventDefault();
+
+    if (checkLP(licensePlateId)) {
+      setError("Bạn cần đăng ký biển số xe trước!");
+      return;
+    } else {
+      setError("");
+    }
 
     const requestOptions = {
       method: 'POST',
@@ -128,7 +146,7 @@ const SessionModal = () => {
             type="text"
             id="licensePlateId"
             className="form-control"
-            placeholder="XX.XXX or XXXX ..."
+            placeholder="XXXXX or XXXX ..."
             value={licensePlateId}
             onChange={(e) => setLicensePlateId(e.target.value)}
             required
@@ -168,6 +186,11 @@ const SessionModal = () => {
             required
           />
         </div>
+        {error && (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        )}
         <div className="text-center mt-4">
           <button type="submit" className="btn btn-primary">Create Session</button>
         </div>
@@ -559,6 +582,11 @@ const SignInModal = () => {
     if (success(result)) {
       localStorage.setItem("username", username);
       alert("Đăng nhập thành công!");
+
+      const response2 = await fetch(`http://localhost:8082/license_plate`);
+      const data = await response2.json();
+      localStorage.setItem("license", JSON.stringify(data));
+
       setSubmitted(true);
       closeModal();
     } else {
@@ -762,13 +790,22 @@ const UpdateModal = () => {
 
 const ViewModal = () => {
   const { closeModal } = useContext(ModalsContext);
-  const [username, setUsername] = useState(localStorage.getItem("tempUsername"));
-  const [accountType, setAccountType] = useState(localStorage.getItem("tempAccountType"));
-  const [fullName, setFullName] = useState(localStorage.getItem("tempFullName"));
-  const [contactNumber, setContactNumber] = useState(localStorage.getItem("tempContactNumber"));
-  const [address, setAddress] = useState(localStorage.getItem("tempAddress"));
-  const [identityNumber, setIdentityNumber] = useState(localStorage.getItem("tempIdentityNumber"));
-  const [email, setEmail] = useState(localStorage.getItem("tempEmail"));
+  // const [username, setUsername] = useState(localStorage.getItem("tempUsername"));
+  // const [accountType, setAccountType] = useState(localStorage.getItem("tempAccountType"));
+  // const [fullName, setFullName] = useState(localStorage.getItem("tempFullName"));
+  // const [contactNumber, setContactNumber] = useState(localStorage.getItem("tempContactNumber"));
+  // const [address, setAddress] = useState(localStorage.getItem("tempAddress"));
+  // const [identityNumber, setIdentityNumber] = useState(localStorage.getItem("tempIdentityNumber"));
+  // const [email, setEmail] = useState(localStorage.getItem("tempEmail"));
+  // const [error, setError] = useState("");
+
+  const [username, setUsername] = useState("");
+  const [accountType, setAccountType] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [identityNumber, setIdentityNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
   // useEffect(() => {

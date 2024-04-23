@@ -47,10 +47,13 @@ function Dashboard() {
         try {
             const response = await fetch(`http://localhost:8082/auction_session/${auctionId}`);
             const data = await response.json();
+            const response2 = await fetch(`http://localhost:8082/bidding/${auctionId}/latest`);
+            const data2 = await response2.json();
             localStorage.setItem("be_time", data.beginningTime);
             localStorage.setItem("en_time", data.endingTime);
             localStorage.setItem("status", data.status);
-            localStorage.setItem("price", data.startingPrice);
+            localStorage.setItem("startingPrice", data.startingPrice);
+            localStorage.setItem("price", data2.amount);
             localStorage.setItem("userId", data.userId);
             localStorage.setItem("licensePlateId", data.licensePlateId);
             handleOpen();
@@ -131,9 +134,22 @@ function Dashboard() {
         }
     }
 
-    const handleDelete = async (auctionId) => {
+    const handleDelete = async (item) => {
         try {
+            let auctionId = item.auctionId;
 
+            const requestOptions = {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' }
+            };
+            const response = await fetch(`http://localhost:8082/auction_session/${auctionId}`, requestOptions);
+
+            if (response.ok) {
+                alert("Xóa phiên đấu giá thành công");
+                window.location.reload();
+            } else {
+                alert("Xóa phiên đấu giá thất bại!");
+            }
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -171,43 +187,91 @@ function Dashboard() {
             )}
             <div className="custom-div-1">
                 {items.map((item) => (
-                    <div key={item.id} className="custom-div-button-1 mb-4">
-                        <div className="custom-div-div-1">
-                            <p className="custom-p-1">Auction ID: {item.auctionId}</p>
-                            <p className="custom-p-1">beginningTime: {item.beginningTime}</p>
-                            <p className="custom-p-1">License plate: {item.licensePlateId}</p>
-                            <p className="custom-p-1">Status: {item.status}</p>
-                        </div>
-                        {(signIn() && !admin()) && (
-                            <Button
-                                variant="outline-secondary"
-                                className="custom-button"
-                                onClick={() => handleViewClick(item.auctionId)}
-                            >View</Button>
-                        )}
-
+                    <div>
                         {admin() && (
-                            <div>
-                                <Button
-                                    variant="primary"
-                                    className="custom-button"
-                                    onClick={() => handleSetStatus(item)}
-                                    disabled={!pen(item)}
-                                >Accept</Button>
-                                <Button
-                                    variant="secondary"
-                                    className="custom-button"
-                                    onClick={() => handleDenyStatus(item)}
-                                    disabled={!act(item)}
-                                >Deny</Button>
+                            <div key={item.id} className="custom-div-button-1 mb-4">
+                                <div className="custom-div-div-1">
+                                    <p className="custom-p-1">Auction ID: {item.auctionId}</p>
+                                    <p className="custom-p-1">beginningTime: {item.beginningTime}</p>
+                                    <p className="custom-p-1">License plate: {item.licensePlateId}</p>
+                                    <p className="custom-p-1">Status: {item.status}</p>
+                                </div>
+                                {(signIn() && !admin()) && (
+                                    <Button
+                                        variant="outline-secondary"
+                                        className="custom-button"
+                                        onClick={() => handleViewClick(item.auctionId)}
+                                    >View</Button>
+                                )}
+
+                                {admin() && (
+                                    <div>
+                                        <Button
+                                            variant="primary"
+                                            className="custom-button"
+                                            onClick={() => handleSetStatus(item)}
+                                            disabled={!pen(item)}
+                                        >Accept</Button>
+                                        <Button
+                                            variant="secondary"
+                                            className="custom-button"
+                                            onClick={() => handleDenyStatus(item)}
+                                            disabled={!act(item)}
+                                        >Deny</Button>
+                                    </div>
+                                )}
+
+                                {(checkUser(item.userId) || admin()) && (
+                                    <Button
+                                        variant="danger"
+                                        className="custom-button"
+                                        onClick={() => handleDelete(item)}
+                                    >Delete</Button>
+                                )}
                             </div>
                         )}
+                        {(!admin() && (act(item) || item.userId === localStorage.getItem("username"))) && (
+                            <div key={item.id} className="custom-div-button-1 mb-4">
+                                <div className="custom-div-div-1">
+                                    <p className="custom-p-1">Auction ID: {item.auctionId}</p>
+                                    <p className="custom-p-1">beginningTime: {item.beginningTime}</p>
+                                    <p className="custom-p-1">License plate: {item.licensePlateId}</p>
+                                    <p className="custom-p-1">Status: {item.status}</p>
+                                </div>
+                                {(signIn() && !admin()) && (
+                                    <Button
+                                        variant="outline-secondary"
+                                        className="custom-button"
+                                        onClick={() => handleViewClick(item.auctionId)}
+                                        disabled={pen(item)}
+                                    >View</Button>
+                                )}
 
-                        {(checkUser(item.userId) || admin()) && (
-                            <Button
-                                variant="danger"
-                                className="custom-button"
-                            >Delete</Button>
+                                {admin() && (
+                                    <div>
+                                        <Button
+                                            variant="primary"
+                                            className="custom-button"
+                                            onClick={() => handleSetStatus(item)}
+                                            disabled={!pen(item)}
+                                        >Accept</Button>
+                                        <Button
+                                            variant="secondary"
+                                            className="custom-button"
+                                            onClick={() => handleDenyStatus(item)}
+                                            disabled={!act(item)}
+                                        >Deny</Button>
+                                    </div>
+                                )}
+
+                                {(checkUser(item.userId) || admin()) && (
+                                    <Button
+                                        variant="danger"
+                                        className="custom-button"
+                                        onClick={() => handleDelete(item)}
+                                    >Delete</Button>
+                                )}
+                            </div>
                         )}
                     </div>
                 ))}

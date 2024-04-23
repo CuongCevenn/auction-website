@@ -5,7 +5,8 @@ function Session() {
     const [beginningTime, setBeginningTime] = useState(localStorage.getItem("be_time"));
     const [endingTime, setEndingTime] = useState(localStorage.getItem("en_time"));
     const [status, setStatus] = useState(localStorage.getItem("status"));
-    const [startingPrice, setStartingPrice] = useState(localStorage.getItem("price"));
+    const [startingPrice, setStartingPrice] = useState(localStorage.getItem("startingPrice"));
+    const [price, setPrice] = useState(localStorage.getItem("price"));
     const [userId, setUserId] = useState(localStorage.getItem("userId"));
     const [licensePlateId, setLicensePlateId] = useState(localStorage.getItem("licensePlateId"));
     const priceRef = useRef(null);
@@ -19,20 +20,6 @@ function Session() {
 
         const newPrice = priceRef.current.value;
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "auctionId": auctionId,
-                "beginningTime": beginningTime,
-                "endingTime": endingTime,
-                "status": status,
-                "startingPrice": newPrice,
-                "userId": userId,
-                "licensePlateId": licensePlateId
-            })
-        };
-        const response = await fetch('http://localhost:8082/auction_session', requestOptions);
         let nowTime = new Date().getTime();
         const bidRequestOptions = {
             method: 'POST',
@@ -44,15 +31,11 @@ function Session() {
                 "biddingTime": nowTime
             })
         };
-        if (response.ok) {
-            const bidResponse = await fetch('http://localhost:8082/bidding', bidRequestOptions);
-            if (bidResponse.ok) {
-                alert("Đấu giá thành công!");
-                setStartingPrice(newPrice);
-                priceRef.current.value = '';
-            } else {
-                alert("Đấu giá thất bại!");
-            }
+        const bidResponse = await fetch('http://localhost:8082/bidding', bidRequestOptions);
+        if (bidResponse.ok) {
+            alert("Đấu giá thành công!");
+            setPrice(newPrice);
+            priceRef.current.value = '';
         } else {
             alert("Đấu giá thất bại!");
         }
@@ -92,7 +75,10 @@ function Session() {
                 <label>License Plate Id: {licensePlateId}</label>
             </div>
             <div>
-                <label>Current Price: {startingPrice}</label>
+                <label>Starting Price: {startingPrice}</label>
+            </div>
+            <div>
+                <label>Current Price: {price}</label>
                 <br />
                 <br />
                 <br />
