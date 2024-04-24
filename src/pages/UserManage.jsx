@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Button } from "react-bootstrap";
 import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
-import './Dashboard.css';
+import './UserManage.css';
 
 function UserManage() {
     const [items, setItems] = useState([]);

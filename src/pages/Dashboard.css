@@ -2,64 +2,68 @@
     display: flex;
     flex-direction: column;
     margin: 0;
-    /* box-sizing: border-box; */
-    background-color: #38924d;
-    /* border-radius: 1.5em; */
+    background-color: #f0f0f0; /* Sử dụng màu xám nhạt */
     text-align: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(128, 128, 128, 0.7)); /* Gradient màu xám */
 }
 
 .custom-span-1 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 50px;
-    align-content: top;
-    color: #FFFFFF;
+    color: #333333; /* Màu xám đậm */
+    text-shadow: 2px 2px 4px #aaa; /* Hiệu ứng đổ bóng */
 }
 
 .custom-div-1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: left;
-    margin: 20px 20px;
+    margin: 20px;
+    color: #444; /* Màu xám */
 }
 
 .custom-div-div-1 {
     flex: 1;
+    background-color: #d3d3d3; /* Màu xám sáng */
 }
 
 .custom-col-2 {
-    background-color: rgb(127, 132, 192);
+    background-color: #f5f5f5; /* Sử dụng màu xám sáng hơn */
     text-align: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(128, 128, 128, 0.7)); /* Gradient mềm mại */
 }
 
 .custom-p-1 {
     margin: 0;
     margin-left: 12px;
+    color: #555555; /* Màu xám trung bình */
 }
 
 .custom-div-button-1 {
     display: flex;
     align-items: center;
-    background-color: #b8c587;
+    background-color: #e0e0e0; /* Xám nhạt */
     font-size: 15px;
     border-radius: 0.5em;
-    padding-right: 20px;
+    padding: 15px;
     border-style: solid;
-    border-color: #3e3f2d;
+    border-color: #999999; /* Màu xám đậm hơn để nổi bật */
 }
 
 .custom-button-1 {
     margin-left: auto;
-    padding: 20px 30px 20px 30px;
+    padding: 15px 25px; /* Giảm padding để gọn hơn */
+    background-color: #808080; /* Màu xám trung bình */
+    color: #ffffff; /* Chữ trắng */
+    border-radius: 0.5em;
 }
 
 .custom-div-button-2 {
     display: flex;
     align-items: center;
-    background-color: #4cbdc5;
+    background-color: #c0c0c0; /* Màu xám sáng */
     font-size: 15px;
     border-radius: 0.5em;
-    padding-right: 20px;
+    padding: 15px;
     border-style: solid;
-    border-color: #271310;
+    border-color: #666666; /* Màu xám trung bình */
 }

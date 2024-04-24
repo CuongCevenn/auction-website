@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import './Session.css';
 
 function Session() {
     const [auctionId, setAuctionId] = useState(localStorage.getItem("auctionId"));
