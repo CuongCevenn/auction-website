@@ -1,0 +1,69 @@
+.Session {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f7f7f7; /* Màu nền nhạt */
+    border-radius: 10px; /* Bo góc mềm mại */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ */
+}
+
+.Session h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Màu chữ đậm */
+    text-align: center; /* Căn giữa */
+    margin-bottom: 20px;
+}
+
+.Session div {
+    margin-bottom: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+.Session label {
+    font-size: 16px;
+    color: #555; /* Màu chữ trung bình */
+    font-weight: normal;
+}
+
+.Session input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Đường viền màu nhạt */
+    border-radius: 5px; /* Bo góc mềm mại */
+    margin-bottom: 10px; /* Khoảng cách giữa các phần tử */
+    width: 100%; /* Chiếm đầy đủ chiều rộng */
+}
+
+.Session .form-control {
+    width: 200px; /* Độ rộng cố định cho form control */
+    display: inline-block;
+    margin-right: 10px; /* Khoảng cách giữa form control và nút */
+}
+
+.Session button {
+    padding: 10px 20px; /* Khoảng cách trong nút */
+    font-size: 16px;
+    background-color: #007bff; /* Màu xanh chủ đạo */
+    color: #fff; /* Chữ màu trắng */
+    border: none;
+    border-radius: 5px; /* Bo góc mềm mại */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu */
+}
+
+.Session button:hover {
+    background-color: #0056b3; /* Màu khi di chuột qua */
+}
+
+.Session .me-2 {
+    margin-right: 10px; /* Khoảng cách giữa các nút */
+}
+
+.Session .spacer {
+    height: 30px; /* Khoảng cách giữa các phần tử */
+}
+
+.Session .bid-input {
+    display: flex;
+    justify-content: center; /* Căn giữa form control và nút */
+    align-items: center;
+}
+

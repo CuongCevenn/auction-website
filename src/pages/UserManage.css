@@ -1,0 +1,72 @@
+/* Giao diện tổng thể */
+.UserManagement {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f5f5f5; /* Màu nền nhạt để tăng sự tương phản */
+    border-radius: 10px; /* Bo góc mềm mại */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+/* Tiêu đề trang */
+.UserManagement .custom-span-1 {
+    font-size: 28px; /* Kích thước lớn cho tiêu đề */
+    font-weight: bold;
+    color: #333; /* Màu chữ đậm */
+    text-align: center;
+    margin-bottom: 20px; /* Khoảng cách giữa tiêu đề và nội dung */
+}
+
+/* Phần thân */
+.UserManagement .custom-div-1 {
+    text-align: left; /* Căn trái */
+    padding: 10px;
+    border: 1px solid #ddd; /* Đường viền nhẹ */
+    border-radius: 10px; /* Bo góc mềm mại */
+    background-color: #fff; /* Màu nền trắng để làm nổi bật nội dung */
+}
+
+/* Các nút điều khiển */
+.UserManagement .custom-div-button-1 {
+    display: flex;
+    align-items: center; /* Canh giữa theo chiều dọc */
+    background-color: #f7f7f7; /* Màu nền nhạt */
+    border: 1px solid #ccc; /* Đường viền nhạt */
+    border-radius: 10px; /* Bo góc mềm mại */
+    padding: 10px; /* Khoảng cách trong phần tử */
+    margin-bottom: 15px; /* Khoảng cách giữa các mục */
+    justify-content: space-between; /* Giãn đều các nút */
+}
+
+/* Mục thông tin */
+.UserManagement .custom-div-div-1 {
+    flex-grow: 1; /* Mục này chiếm phần còn lại của phần tử cha */
+}
+
+.UserManagement .custom-p-1 {
+    margin: 5px 0; /* Khoảng cách giữa các mục */
+    font-size: 16px; /* Kích thước chữ vừa phải */
+    color: #333; /* Màu chữ đậm */
+}
+
+/* Các nút điều khiển */
+.UserManagement .custom-button {
+    padding: 8px 15px; /* Khoảng cách trong nút */
+    font-size: 14px; /* Kích thước chữ trong nút */
+    border: none; /* Xóa đường viền nút */
+    border-radius: 5px; /* Bo góc mềm mại */
+    transition: all 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.UserManagement .custom-button:hover {
+    background-color: #ddd; /* Màu khi di chuột qua */
+}
+
+.UserManagement .custom-button-danger {
+    background-color: #e74c3c; /* Màu đỏ cho nút Delete */
+    color: #fff; /* Chữ trắng cho nút Delete */
+}
+
+.UserManagement .custom-button-danger:hover {
+    background-color: #c0392b; /* Màu đậm hơn khi di chuột qua */
+}
