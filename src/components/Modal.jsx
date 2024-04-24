@@ -523,11 +523,11 @@ const SignInModal = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const { updateGlobalValue } = useGlobal();
+  // const { updateGlobalValue } = useGlobal();
 
-  const handleChangeGlobalValue = (e) => {
-    updateGlobalValue(e);
-  };
+  // const handleChangeGlobalValue = (e) => {
+  //   updateGlobalValue(e);
+  // };
 
   useEffect(() => {
     if (submitted) {
@@ -537,7 +537,7 @@ const SignInModal = () => {
           const data = await response.json();
           console.log(data);
 
-          handleChangeGlobalValue(data.accountType);
+          // handleChangeGlobalValue(data.accountType);
           localStorage.setItem("accountType", data.accountType);
           localStorage.setItem("fullName", data.fullname);
           localStorage.setItem("contactNumber", data.contactNumber);

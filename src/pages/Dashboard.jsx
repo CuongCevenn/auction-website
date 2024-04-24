@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
 import './Dashboard.css';
-import { useGlobal } from "../contexts/GlobalContext";
+// import { useGlobal } from "../contexts/GlobalContext";
 
 function Dashboard() {
-    const { globalValue } = useGlobal();
+    // const { globalValue } = useGlobal();
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
     const openModal = useContext(ModalsContext).openModal;
@@ -48,13 +48,19 @@ function Dashboard() {
         try {
             const response = await fetch(`http://localhost:8082/auction_session/${auctionId}`);
             const data = await response.json();
-            const response2 = await fetch(`http://localhost:8082/bidding/${auctionId}/latest`);
-            const data2 = await response2.json();
+            let price = data.startingPrice;
+            try {
+                const response2 = await fetch(`http://localhost:8082/bidding/${auctionId}/latest`);
+                const data2 = await response2.json();
+                price = data2.amount;
+            } catch (e2) {
+                console.log(price);
+            }
             localStorage.setItem("be_time", data.beginningTime);
             localStorage.setItem("en_time", data.endingTime);
             localStorage.setItem("status", data.status);
             localStorage.setItem("startingPrice", data.startingPrice);
-            localStorage.setItem("price", data2.amount);
+            localStorage.setItem("price", price);
             localStorage.setItem("userId", data.userId);
             localStorage.setItem("licensePlateId", data.licensePlateId);
             handleOpen();
