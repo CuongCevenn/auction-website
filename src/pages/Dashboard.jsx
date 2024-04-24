@@ -28,7 +28,7 @@ function Dashboard() {
     }
 
     function admin() {
-        if (globalValue === "admin") {
+        if (localStorage.getItem("accountType") === "admin") {
             return true;
         } else {
             return false;
