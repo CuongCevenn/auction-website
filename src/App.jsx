@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AutoSignIn } from "./firebase/AutoSignIn";
 import { ItemsProvider } from "./contexts/ItemsProvider";
 import { ModalsProvider } from "./contexts/ModalsProvider";
+import { GlobalProvider } from "./contexts/GlobalContext";
 import Navbar from "./components/Navbar";
 import { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewLPModal, ViewModal } from "./components/Modal";
 import AdminPage from "./pages/Admin";
@@ -24,9 +25,9 @@ function App() {
 
   const Providers = ({ children }) => {
     return (
-      <ItemsProvider demo={demo}>
+      <GlobalProvider>
         <ModalsProvider>{children}</ModalsProvider>
-      </ItemsProvider>
+      </GlobalProvider>
     );
   };
 

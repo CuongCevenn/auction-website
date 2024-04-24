@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
 import { Status } from "../utils/status";
+import { useGlobal } from "../contexts/GlobalContext";
 
 const Modal = ({ type, title, children }) => {
   const { closeModal, currentModal } = useContext(ModalsContext);
@@ -522,6 +523,11 @@ const SignInModal = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const { updateGlobalValue } = useGlobal();
+
+  const handleChangeGlobalValue = (e) => {
+    updateGlobalValue(e);
+  };
 
   useEffect(() => {
     if (submitted) {
@@ -531,6 +537,7 @@ const SignInModal = () => {
           const data = await response.json();
           console.log(data);
 
+          handleChangeGlobalValue(data.accountType);
           localStorage.setItem("accountType", data.accountType);
           localStorage.setItem("fullName", data.fullname);
           localStorage.setItem("contactNumber", data.contactNumber);

@@ -6,9 +6,10 @@ import PropTypes from "prop-types";
 import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
 import './Dashboard.css';
+import { useGlobal } from "../contexts/GlobalContext";
 
 function Dashboard() {
-
+    const { globalValue } = useGlobal();
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
     const openModal = useContext(ModalsContext).openModal;
@@ -27,7 +28,7 @@ function Dashboard() {
     }
 
     function admin() {
-        if (localStorage.getItem("accountType") === "admin") {
+        if (globalValue === "admin") {
             return true;
         } else {
             return false;
