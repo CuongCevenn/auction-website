@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
@@ -139,7 +140,7 @@ const SessionModal = () => {
   }
 
   return (
-    <Modal type={ModalTypes.SESSION} title="Create Session">
+  <Modal type={ModalTypes.SESSION} title="Create Session">
       <form onSubmit={handleSubmitSession}>
         <div className="form-group">
           <label htmlFor="licensePlateId">License Plate Number</label>
@@ -160,7 +161,7 @@ const SessionModal = () => {
             id="beginningTime"
             className="form-control"
             placeholder="YYYY-MM-DD HH:mm:ss"
-            onChange={(e) => handleBeginningTime(e)}
+            onChange={handleBeginningTime}
             required
           />
         </div>
@@ -171,7 +172,7 @@ const SessionModal = () => {
             id="endingTime"
             className="form-control"
             placeholder="YYYY-MM-DD HH:mm:ss"
-            onChange={(e) => handleEndingTime(e)}
+            onChange={handleEndingTime}
             required
           />
         </div>
@@ -193,10 +194,21 @@ const SessionModal = () => {
           </div>
         )}
         <div className="text-center mt-4">
-          <button type="submit" className="btn btn-primary">Create Session</button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            style={{
+              maxWidth: '150px', // Giới hạn chiều rộng của nút
+              padding: '0.5rem 1rem', // Chỉnh sửa padding
+              fontSize: '0.9rem', // Giảm kích thước chữ
+            }}
+          >
+            Create Session
+          </button>
         </div>
       </form>
     </Modal>
+
   );
 }
 
@@ -806,7 +818,7 @@ const SignInModal = () => {
         }
       }
       fetchData();
-      window.location.reload();
+      // window.location.reload();
     }
 
     setSubmitted(false);

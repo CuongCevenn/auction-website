@@ -14,7 +14,6 @@ function UserManage() {
             try {
                 const response = await fetch("http://localhost:8082/user");
                 const data = await response.json();
-                console.log(data);
                 setItems(data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -97,41 +96,34 @@ function UserManage() {
     }
 
     return (
-        <div>
-            <div className="App">
-                <span className="custom-span-1">User Management</span>
-                <br />
-                <div className="custom-div-1">
-                    {items.map((item) => (
-                        <div>
-                            {(item.accountType === "user") && (
-                                <div key={item.id} className="custom-div-button-1 mb-4">
-                                    <div className="custom-div-div-1">
-                                        <p className="custom-p-1">Username: {item.username}</p>
-                                        <p className="custom-p-1">Full Name: {item.fullname}</p>
-                                        <p className="custom-p-1">Contact: {item.contactNumber}</p>
-                                    </div>
-
-                                    <Button
-                                        variant="outline-secondary"
-                                        className="custom-button"
-                                        onClick={() => handleViewButton(item)}
-                                    >View</Button>
-                                    <Button
-                                        variant="outline-secondary"
-                                        className="custom-button"
-                                        onClick={() => handlePassword(item)}
-                                    >Reset</Button>
-                                    <Button
-                                        variant="danger"
-                                        className="custom-button"
-                                        onClick={() => handleDelete(item)}
-                                    >Delete</Button>
-                                </div>
-                            )}
+        <div className="user-manage-container">
+            <span className="custom-span-1">User Management</span>
+            <br />
+            <div className="custom-div-1">
+                {items.map((item) => (
+                    <div key={item.username} className="custom-div-button-1">
+                        <div className="custom-div-div-1">
+                            <p className="custom-p-1">Username: {item.username}</p>
+                            <p className="custom-p-1">Full Name: {item.fullname}</p>
+                            <p className="custom-p-1">Contact: {item.contactNumber}</p>
                         </div>
-                    ))}
-                </div>
+                        <Button
+                            variant="outline-secondary"
+                            className="custom-button"
+                            onClick={() => openModal(ModalTypes.VIEW_USER)}
+                        >View</Button>
+                        <Button
+                            variant="outline-secondary"
+                            className="custom-button"
+                            onClick={() => handlePassword(item)}
+                        >Reset</Button>
+                        <Button
+                            variant="danger"
+                            className="custom-button"
+                            onClick={() => handleDelete(item)}
+                        >Delete</Button>
+                    </div>
+                ))}
             </div>
         </div>
     );
