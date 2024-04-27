@@ -523,11 +523,12 @@ const SignInModal = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  // const { updateGlobalValue } = useGlobal();
+  const { updateGlobalValue } = useGlobal();
 
-  // const handleChangeGlobalValue = (e) => {
-  //   updateGlobalValue(e);
-  // };
+  function handleChangeGlobalValue(e) {
+    console.log("123");
+    updateGlobalValue(e);
+  };
 
   useEffect(() => {
     if (submitted) {
@@ -537,7 +538,6 @@ const SignInModal = () => {
           const data = await response.json();
           console.log(data);
 
-          // handleChangeGlobalValue(data.accountType);
           localStorage.setItem("accountType", data.accountType);
           localStorage.setItem("fullName", data.fullname);
           localStorage.setItem("contactNumber", data.contactNumber);
@@ -545,6 +545,8 @@ const SignInModal = () => {
           localStorage.setItem("identityNumber", data.identityNumber);
           localStorage.setItem("email", data.email);
           localStorage.setItem("password", data.password);
+
+          handleChangeGlobalValue(data.accountType);
 
         } catch (error) {
           console.error('Error fetching data:', error);

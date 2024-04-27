@@ -3,15 +3,19 @@ import PropTypes from "prop-types";
 import { useNavigate, useLocation } from "react-router";
 import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
+import { useGlobal } from "../contexts/GlobalContext";
 
 const Navbar = ({ admin }) => {
   const openModal = useContext(ModalsContext).openModal;
+  const { globalValue } = useGlobal();
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [userManage, setUserManage] = useState("User Manage");
 
   function admin() {
     return localStorage.getItem("accountType") === "admin";
+    // return globalValue === "admin";
+
   }
 
   useEffect(() => {

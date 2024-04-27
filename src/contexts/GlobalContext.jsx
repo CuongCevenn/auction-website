@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
-    const [globalValue, setGlobalValue] = useState("");
+    const [globalValue, setGlobalValue] = useState(localStorage.getItem("accountType"));
 
     const updateGlobalValue = (newValue) => {
         setGlobalValue(newValue);
