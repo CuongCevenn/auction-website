@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-key */
 import { Button } from "react-bootstrap";
 import React from 'react';
 import { useNavigate } from "react-router";

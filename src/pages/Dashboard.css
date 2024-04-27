@@ -1,17 +1,21 @@
+/* Dashboard.css */
+
 .App {
     display: flex;
     flex-direction: column;
     margin: 0;
-    background-color: #f0f0f0; /* Sử dụng màu xám nhạt */
+    background-color: #f0f0f0d4; /* Sử dụng màu xám nhạt */
     text-align: center;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(128, 128, 128, 0.7)); /* Gradient màu xám */
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(128, 128, 128, 0.7)); /* Gradient màu xám */
+    padding: 20px; /* Thêm khoảng cách */
 }
 
 .custom-span-1 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 50px;
-    color: #333333; /* Màu xám đậm */
-    text-shadow: 2px 2px 4px #aaa; /* Hiệu ứng đổ bóng */
+    color: #333; /* Màu xám đậm */
+    text-shadow: 2px 2px 4px #aaa; /* Hiệu ứng đổ bóng nhẹ */
+    margin-bottom: 20px; /* Khoảng cách dưới */
 }
 
 .custom-div-1 {
@@ -19,51 +23,52 @@
     text-align: left;
     margin: 20px;
     color: #444; /* Màu xám */
+    background-color: rgba(211, 211, 211, 0.5); /* Màu xám với nền trong suốt */
+    padding: 20px; /* Khoảng cách trong */
+    border-radius: 10px; /* Bo góc */
 }
 
 .custom-div-div-1 {
     flex: 1;
-    background-color: #d3d3d3; /* Màu xám sáng */
+    background-color: rgba(211, 211, 211, 0.3); /* Màu xám sáng với nền trong suốt */
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .custom-col-2 {
-    background-color: #f5f5f5; /* Sử dụng màu xám sáng hơn */
+    background-color: rgba(245, 245, 245, 0.5); /* Màu xám sáng hơn với nền trong suốt */
     text-align: center;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(128, 128, 128, 0.7)); /* Gradient mềm mại */
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(128, 128, 128, 0.7)); /* Gradient mềm mại */
+    padding: 20px;
+    border-radius: 8px;
 }
 
 .custom-p-1 {
     margin: 0;
     margin-left: 12px;
-    color: #555555; /* Màu xám trung bình */
+    color: #555; /* Màu xám trung bình */
 }
 
 .custom-div-button-1 {
     display: flex;
     align-items: center;
-    background-color: #e0e0e0; /* Xám nhạt */
+    background-color: rgba(224, 224, 224, 0.5); /* Xám nhạt với nền trong suốt */
     font-size: 15px;
-    border-radius: 0.5em;
+    border-radius: 10px; /* Bo góc mềm mại */
     padding: 15px;
-    border-style: solid;
-    border-color: #999999; /* Màu xám đậm hơn để nổi bật */
+    border: 1px solid rgba(153, 153, 153, 0.5); /* Màu xám đậm hơn với nền trong suốt */
 }
 
-.custom-button-1 {
-    margin-left: auto;
-    padding: 15px 25px; /* Giảm padding để gọn hơn */
-    background-color: #808080; /* Màu xám trung bình */
-    color: #ffffff; /* Chữ trắng */
-    border-radius: 0.5em;
+.custom-button {
+    padding: 12px 20px;
+    background-color: rgba(128, 128, 128, 0.5); /* Màu xám trung bình với nền trong suốt */
+    color: #fff; /* Chữ trắng */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Viền trong suốt */
+    border-radius: 8px;
+    transition: background-color 0.3s, border-color 0.3s; /* Hiệu ứng chuyển màu */
 }
 
-.custom-div-button-2 {
-    display: flex;
-    align-items: center;
-    background-color: #c0c0c0; /* Màu xám sáng */
-    font-size: 15px;
-    border-radius: 0.5em;
-    padding: 15px;
-    border-style: solid;
-    border-color: #666666; /* Màu xám trung bình */
+.custom-button:hover {
+    background-color: rgba(128, 128, 128, 0.8); /* Thay đổi màu khi hover */
+    border-color: rgba(255, 255, 255, 0.5); /* Thay đổi viền khi hover */
 }

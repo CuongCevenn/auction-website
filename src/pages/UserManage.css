@@ -1,72 +1,72 @@
-/* Giao diện tổng thể */
-.UserManagement {
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-    background-color: #f5f5f5; /* Màu nền nhạt để tăng sự tương phản */
-    border-radius: 10px; /* Bo góc mềm mại */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
-    text-align: center; /* Căn giữa văn bản */
-}
+/* UserManage.css */
 
-/* Tiêu đề trang */
-.UserManagement .custom-span-1 {
-    font-size: 28px; /* Kích thước lớn cho tiêu đề */
-    font-weight: bold;
-    color: #333; /* Màu chữ đậm */
-    text-align: center;
-    margin-bottom: 20px; /* Khoảng cách giữa tiêu đề và nội dung */
-}
-
-/* Phần thân */
-.UserManagement .custom-div-1 {
-    text-align: left; /* Căn trái */
-    padding: 10px;
-    border: 1px solid #ddd; /* Đường viền nhẹ */
-    border-radius: 10px; /* Bo góc mềm mại */
-    background-color: #fff; /* Màu nền trắng để làm nổi bật nội dung */
-}
-
-/* Các nút điều khiển */
-.UserManagement .custom-div-button-1 {
+.user-manage-container {
     display: flex;
-    align-items: center; /* Canh giữa theo chiều dọc */
-    background-color: #f7f7f7; /* Màu nền nhạt */
-    border: 1px solid #ccc; /* Đường viền nhạt */
-    border-radius: 10px; /* Bo góc mềm mại */
-    padding: 10px; /* Khoảng cách trong phần tử */
-    margin-bottom: 15px; /* Khoảng cách giữa các mục */
-    justify-content: space-between; /* Giãn đều các nút */
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px; /* Khoảng cách xung quanh */
+    background-color: #f5f5f5; /* Màu nền nhẹ */
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(128, 128, 128, 0.5)); /* Gradient */
+    border-radius: 12px; /* Bo góc */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
 }
 
-/* Mục thông tin */
-.UserManagement .custom-div-div-1 {
-    flex-grow: 1; /* Mục này chiếm phần còn lại của phần tử cha */
+.custom-span-1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    color: #333; /* Màu xám đậm */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng nhẹ */
+    margin-bottom: 20px; /* Khoảng cách dưới */
 }
 
-.UserManagement .custom-p-1 {
-    margin: 5px 0; /* Khoảng cách giữa các mục */
-    font-size: 16px; /* Kích thước chữ vừa phải */
-    color: #333; /* Màu chữ đậm */
+.custom-div-1 {
+    font-family: 'Arial', sans-serif;
+    background-color: rgba(211, 211, 211, 0.3); /* Màu xám với nền trong suốt */
+    text-align: left;
+    padding: 20px; /* Khoảng cách trong */
+    border-radius: 12px; /* Bo góc */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
 }
 
-/* Các nút điều khiển */
-.UserManagement .custom-button {
-    padding: 8px 15px; /* Khoảng cách trong nút */
-    font-size: 14px; /* Kích thước chữ trong nút */
-    border: none; /* Xóa đường viền nút */
-    border-radius: 5px; /* Bo góc mềm mại */
-    transition: all 0.3s; /* Hiệu ứng chuyển tiếp */
+.custom-div-div-1 {
+    flex: 1;
+    background-color: rgba(211, 211, 211, 0.1); /* Màu xám với nền trong suốt */
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.UserManagement .custom-button:hover {
-    background-color: #ddd; /* Màu khi di chuột qua */
+.custom-p-1 {
+    margin: 0;
+    margin-left: 15px;
+    color: #444; /* Màu xám đậm hơn */
+    font-weight: bold; /* Chữ đậm */
 }
 
-.UserManagement .custom-button-danger {
-    background-color: #e74c3c; /* Màu đỏ cho nút Delete */
-    color: #fff; /* Chữ trắng cho nút Delete */
+.custom-div-button-1 {
+    display: flex;
+    align-items: center;
+    background-color: rgba(240, 240, 240, 0.5); /* Xám nhạt với nền trong suốt */
+    font-size: 16px;
+    border-radius: 12px; /* Bo góc */
+    padding: 15px; /* Khoảng cách trong */
+    border: 1px solid rgba(153, 153, 153, 0.5); /* Viền mờ */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    margin-bottom: 15px; /* Khoảng cách giữa các phần tử */
 }
 
-.UserManagement .custom-button-danger:hover {
-    background-color: #c0392b; /* Màu đậm hơn khi di chuột qua */
+.custom-button {
+    font-size: 16px; /* Tăng cỡ chữ */
+    font-weight: bold; /* Chữ đậm */
+    padding: 12px 20px;
+    background-color: rgba(128, 128, 128, 0.4); /* Màu xám trung bình với nền trong suốt */
+    color: #fff; /* Chữ trắng */
+    border-radius: 10px; /* Bo góc */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Viền trong suốt */
+    transition: background-color 0.3s, border-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+.custom-button:hover {
+    background-color: rgba(128, 128, 128, 0.8); /* Hiệu ứng khi hover */
+    border-color: rgba(255, 255, 255, 0.5); /* Viền thay đổi khi hover */
 }
