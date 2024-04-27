@@ -101,27 +101,31 @@ function UserManage() {
             <br />
             <div className="custom-div-1">
                 {items.map((item) => (
-                    <div key={item.username} className="custom-div-button-1">
-                        <div className="custom-div-div-1">
-                            <p className="custom-p-1">Username: {item.username}</p>
-                            <p className="custom-p-1">Full Name: {item.fullname}</p>
-                            <p className="custom-p-1">Contact: {item.contactNumber}</p>
-                        </div>
-                        <Button
-                            variant="outline-secondary"
-                            className="custom-button"
-                            onClick={() => openModal(ModalTypes.VIEW_USER)}
-                        >View</Button>
-                        <Button
-                            variant="outline-secondary"
-                            className="custom-button"
-                            onClick={() => handlePassword(item)}
-                        >Reset</Button>
-                        <Button
-                            variant="danger"
-                            className="custom-button"
-                            onClick={() => handleDelete(item)}
-                        >Delete</Button>
+                    <div>
+                        {(item.accountType !== "admin") && (
+                            <div key={item.username} className="custom-div-button-1">
+                                <div className="custom-div-div-1">
+                                    <p className="custom-p-1">Username: {item.username}</p>
+                                    <p className="custom-p-1">Full Name: {item.fullname}</p>
+                                    <p className="custom-p-1">Contact: {item.contactNumber}</p>
+                                </div>
+                                <Button
+                                    variant="outline-secondary"
+                                    className="custom-button"
+                                    onClick={() => handleViewButton(item)}
+                                >View</Button>
+                                <Button
+                                    variant="outline-secondary"
+                                    className="custom-button"
+                                    onClick={() => handlePassword(item)}
+                                >Reset</Button>
+                                <Button
+                                    variant="danger"
+                                    className="custom-button"
+                                    onClick={() => handleDelete(item)}
+                                >Delete</Button>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>

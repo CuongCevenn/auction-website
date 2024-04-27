@@ -140,7 +140,7 @@ const SessionModal = () => {
   }
 
   return (
-  <Modal type={ModalTypes.SESSION} title="Create Session">
+    <Modal type={ModalTypes.SESSION} title="Create Session">
       <form onSubmit={handleSubmitSession}>
         <div className="form-group">
           <label htmlFor="licensePlateId">License Plate Number</label>
@@ -818,7 +818,7 @@ const SignInModal = () => {
         }
       }
       fetchData();
-      // window.location.reload();
+      window.location.reload();
     }
 
     setSubmitted(false);
@@ -1086,15 +1086,6 @@ const ViewModal = () => {
     setEmail(activeItem.email);
     setPassword(activeItem.password);
   }, [currentModal]);
-
-  // const [username, setUsername] = useState("");
-  // const [accountType, setAccountType] = useState("");
-  // const [fullName, setFullName] = useState("");
-  // const [contactNumber, setContactNumber] = useState("");
-  // const [address, setAddress] = useState("");
-  // const [identityNumber, setIdentityNumber] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [error, setError] = useState("");
 
   const handleUpdate = async (e) => {
 
