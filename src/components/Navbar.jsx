@@ -13,6 +13,7 @@ const Navbar = ({ admin }) => {
   const [userManage, setUserManage] = useState("User Manage");
 
   function admin() {
+    // return admin;
     return localStorage.getItem("accountType") === "admin";
     // return globalValue === "admin";
 
@@ -52,6 +53,7 @@ const Navbar = ({ admin }) => {
     localStorage.removeItem("password");
 
     navigate(import.meta.env.BASE_URL);
+    window.location.reload();
   }
 
   const handleInfo = () => {

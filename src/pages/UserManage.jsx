@@ -7,6 +7,7 @@ import './UserManage.css';
 function UserManage() {
     const [items, setItems] = useState([]);
     const openModal = useContext(ModalsContext).openModal;
+    const [key, setKey] = useState(0);
 
     useEffect(() => {
         async function fetchData() {
@@ -20,9 +21,9 @@ function UserManage() {
             }
         }
         fetchData();
-    }, []);
+    }, [key]);
 
-    const handleViewButton = async (item) => {
+    const handleViewButton = (item) => {
         // localStorage.setItem("tempUsername", item.username);
         // localStorage.setItem("tempAccountType", item.accountType);
         // localStorage.setItem("tempFullName", item.fullname);
@@ -32,7 +33,10 @@ function UserManage() {
         // localStorage.setItem("tempEmail", item.email);
         // localStorage.setItem("tempPassword", item.password);
 
-        openModal(ModalTypes.VIEW_USER);
+        const { username, accountType, contactNumber, fullname, address, identityNumber, email, password } = item;
+
+        openModal(ModalTypes.VIEW_USER, { username, accountType, contactNumber, fullname, address, identityNumber, email, password });
+        setKey(Date.now());
     }
 
     const handlePassword = async (item) => {

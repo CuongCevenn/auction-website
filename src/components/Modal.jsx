@@ -205,7 +205,257 @@ const LicensePlateModal = () => {
   const [licensePlateId, setLicensePlateId] = useState("");
   const [meanOfTransport, setMeanOfTransport] = useState("motorbike");
   const [userId, setUserId] = useState(localStorage.getItem("username"));
-  const [licensePlateProvince, setLicensePlateProvince] = useState("");
+  const [licensePlateProvince, setLicensePlateProvince] = useState("1");
+  const provinces = [
+    {
+      "id": 1,
+      "provinceName": "Hà Nội"
+    },
+    {
+      "id": 2,
+      "provinceName": "Hồ Chí Minh"
+    },
+    {
+      "id": 3,
+      "provinceName": "Đà Nẵng"
+    },
+    {
+      "id": 4,
+      "provinceName": "Hải Phòng"
+    },
+    {
+      "id": 5,
+      "provinceName": "Cần Thơ"
+    },
+    {
+      "id": 6,
+      "provinceName": "An Giang"
+    },
+    {
+      "id": 7,
+      "provinceName": "Bà Rịa - Vũng Tàu"
+    },
+    {
+      "id": 8,
+      "provinceName": "Bắc Giang"
+    },
+    {
+      "id": 9,
+      "provinceName": "Bắc Kạn"
+    },
+    {
+      "id": 10,
+      "provinceName": "Bạc Liêu"
+    },
+    {
+      "id": 11,
+      "provinceName": "Bắc Ninh"
+    },
+    {
+      "id": 12,
+      "provinceName": "Bến Tre"
+    },
+    {
+      "id": 13,
+      "provinceName": "Bình Định"
+    },
+    {
+      "id": 14,
+      "provinceName": "Bình Dương"
+    },
+    {
+      "id": 15,
+      "provinceName": "Bình Phước"
+    },
+    {
+      "id": 16,
+      "provinceName": "Bình Thuận"
+    },
+    {
+      "id": 17,
+      "provinceName": "Cà Mau"
+    },
+    {
+      "id": 18,
+      "provinceName": "Cao Bằng"
+    },
+    {
+      "id": 19,
+      "provinceName": "Đắk Lắk"
+    },
+    {
+      "id": 20,
+      "provinceName": "Đắk Nông"
+    },
+    {
+      "id": 21,
+      "provinceName": "Điện Biên"
+    },
+    {
+      "id": 22,
+      "provinceName": "Đồng Nai"
+    },
+    {
+      "id": 23,
+      "provinceName": "Đồng Tháp"
+    },
+    {
+      "id": 24,
+      "provinceName": "Gia Lai"
+    },
+    {
+      "id": 25,
+      "provinceName": "Hà Giang"
+    },
+    {
+      "id": 26,
+      "provinceName": "Hà Nam"
+    },
+    {
+      "id": 27,
+      "provinceName": "Hà Tĩnh"
+    },
+    {
+      "id": 28,
+      "provinceName": "Hải Dương"
+    },
+    {
+      "id": 29,
+      "provinceName": "Hậu Giang"
+    },
+    {
+      "id": 30,
+      "provinceName": "Hòa Bình"
+    },
+    {
+      "id": 31,
+      "provinceName": "Hưng Yên"
+    },
+    {
+      "id": 32,
+      "provinceName": "Khánh Hòa"
+    },
+    {
+      "id": 33,
+      "provinceName": "Kiên Giang"
+    },
+    {
+      "id": 34,
+      "provinceName": "Kon Tum"
+    },
+    {
+      "id": 35,
+      "provinceName": "Lai Châu"
+    },
+    {
+      "id": 36,
+      "provinceName": "Lâm Đồng"
+    },
+    {
+      "id": 37,
+      "provinceName": "Lạng Sơn"
+    },
+    {
+      "id": 38,
+      "provinceName": "Lào Cai"
+    },
+    {
+      "id": 39,
+      "provinceName": "Long An"
+    },
+    {
+      "id": 40,
+      "provinceName": "Nam Định"
+    },
+    {
+      "id": 41,
+      "provinceName": "Nghệ An"
+    },
+    {
+      "id": 42,
+      "provinceName": "Ninh Bình"
+    },
+    {
+      "id": 43,
+      "provinceName": "Ninh Thuận"
+    },
+    {
+      "id": 44,
+      "provinceName": "Phú Thọ"
+    },
+    {
+      "id": 45,
+      "provinceName": "Quảng Bình"
+    },
+    {
+      "id": 46,
+      "provinceName": "Quảng Nam"
+    },
+    {
+      "id": 47,
+      "provinceName": "Quảng Ngãi"
+    },
+    {
+      "id": 48,
+      "provinceName": "Quảng Ninh"
+    },
+    {
+      "id": 49,
+      "provinceName": "Quảng Trị"
+    },
+    {
+      "id": 50,
+      "provinceName": "Sóc Trăng"
+    },
+    {
+      "id": 51,
+      "provinceName": "Sơn La"
+    },
+    {
+      "id": 52,
+      "provinceName": "Tây Ninh"
+    },
+    {
+      "id": 53,
+      "provinceName": "Thái Bình"
+    },
+    {
+      "id": 54,
+      "provinceName": "Thái Nguyên"
+    },
+    {
+      "id": 55,
+      "provinceName": "Thanh Hóa"
+    },
+    {
+      "id": 56,
+      "provinceName": "Thừa Thiên Huế"
+    },
+    {
+      "id": 57,
+      "provinceName": "Tiền Giang"
+    },
+    {
+      "id": 58,
+      "provinceName": "Trà Vinh"
+    },
+    {
+      "id": 59,
+      "provinceName": "Tuyên Quang"
+    },
+    {
+      "id": 60,
+      "provinceName": "Vĩnh Long"
+    },
+    {
+      "id": 61,
+      "provinceName": "Vĩnh Phúc"
+    },
+    {
+      "id": 62,
+      "provinceName": "Yên Bái"
+    }
+  ]
 
   const handleSubmitLP = async (e) => {
     e.preventDefault();
@@ -261,16 +511,19 @@ const LicensePlateModal = () => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="licensePlateProvince">Province Code</label>
-            <input
-              type="text"
+            <label htmlFor="licensePlateProvince">Province</label>
+            <select
               id="licensePlateProvince"
               className="form-control"
-              placeholder="Province code"
               value={licensePlateProvince}
               onChange={(e) => setLicensePlateProvince(e.target.value)}
-              required
-            />
+            >
+              {provinces.map(province => (
+                <option key={province.id} value={province.id}>
+                  {province.provinceName}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="text-center mt-4">
             <button type="submit" className="btn btn-primary">Register</button>
@@ -678,7 +931,7 @@ const UpdateModal = () => {
       return;
     }
     const requestOptions = {
-      method: 'PUT',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         "username": username,
@@ -798,16 +1051,7 @@ const UpdateModal = () => {
 }
 
 const ViewModal = () => {
-  const { closeModal } = useContext(ModalsContext);
-  // const [username, setUsername] = useState(localStorage.getItem("tempUsername"));
-  // const [accountType, setAccountType] = useState(localStorage.getItem("tempAccountType"));
-  // const [fullName, setFullName] = useState(localStorage.getItem("tempFullName"));
-  // const [contactNumber, setContactNumber] = useState(localStorage.getItem("tempContactNumber"));
-  // const [address, setAddress] = useState(localStorage.getItem("tempAddress"));
-  // const [identityNumber, setIdentityNumber] = useState(localStorage.getItem("tempIdentityNumber"));
-  // const [email, setEmail] = useState(localStorage.getItem("tempEmail"));
-  // const [error, setError] = useState("");
-
+  const { activeItem, closeModal, currentModal } = useContext(ModalsContext);
   const [username, setUsername] = useState("");
   const [accountType, setAccountType] = useState("");
   const [fullName, setFullName] = useState("");
@@ -815,18 +1059,30 @@ const ViewModal = () => {
   const [address, setAddress] = useState("");
   const [identityNumber, setIdentityNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
   const [error, setError] = useState("");
+  const [modalKey, setModalKey] = useState(0);
 
-  // useEffect(() => {
-  //   setUsername(localStorage.getItem("tempUsername"));
-  //   setAccountType(localStorage.getItem("tempAccountType"));
-  //   setFullName(localStorage.getItem("tempFullName"));
-  //   setContactNumber(localStorage.getItem("tempContactNumber"));
-  //   setAddress(localStorage.getItem("tempAddress"));
-  //   setIdentityNumber(localStorage.getItem("tempIdentityNumber"));
-  //   setEmail(localStorage.getItem("tempEmail"));
-  // }, []);
+  useEffect(() => {
+    setModalKey(Date.now());
+    setUsername(activeItem.username);
+    setAccountType(activeItem.accountType);
+    setFullName(activeItem.fullname);
+    setContactNumber(activeItem.contactNumber);
+    setAddress(activeItem.address);
+    setIdentityNumber(activeItem.identityNumber);
+    setEmail(activeItem.email);
+    setPassword(activeItem.password);
+  }, [currentModal]);
 
+  // const [username, setUsername] = useState("");
+  // const [accountType, setAccountType] = useState("");
+  // const [fullName, setFullName] = useState("");
+  // const [contactNumber, setContactNumber] = useState("");
+  // const [address, setAddress] = useState("");
+  // const [identityNumber, setIdentityNumber] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [error, setError] = useState("");
 
   const handleUpdate = async (e) => {
 
@@ -835,11 +1091,11 @@ const ViewModal = () => {
       return;
     }
     const requestOptions = {
-      method: 'PUT',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         "username": username,
-        "password": localStorage.getItem("tempPassword"),
+        "password": password,
         "accountType": accountType,
         "fullname": fullName,
         "contactNumber": contactNumber,

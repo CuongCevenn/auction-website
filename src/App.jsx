@@ -20,8 +20,11 @@ import Session from "./pages/Session";
 import UserManage from "./pages/UserManage";
 
 function App() {
-  const demo = true;
-  const { admin } = AutoSignIn();
+  function isAdmin() {
+    return localStorage.getItem("accountType") === "admin";
+  }
+
+  const admin = isAdmin();
 
   const Providers = ({ children }) => {
     return (
@@ -30,10 +33,6 @@ function App() {
       </GlobalProvider>
     );
   };
-
-  function ProtectedRoute({ children, condition }) {
-    return condition ? children : <Navigate to={import.meta.env.BASE_URL} />;
-  }
 
   return (
     <Providers>
@@ -47,7 +46,12 @@ function App() {
         <ViewLPModal />
         <ViewModal />
         <Routes>
-          <Route path={import.meta.env.BASE_URL} Component={Dashboard} />
+          {admin && (
+            <Route path={import.meta.env.BASE_URL} Component={AdminPage} />
+          )}
+          {!admin && (
+            <Route path={import.meta.env.BASE_URL} Component={Dashboard} />
+          )}
           <Route path={import.meta.env.BASE_URL + "session"} Component={Session} />
           <Route path={import.meta.env.BASE_URL + "admin"} Component={UserManage} />
         </Routes>
