@@ -7,12 +7,10 @@ import {
   Navigate,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { AutoSignIn } from "./firebase/AutoSignIn";
-import { ItemsProvider } from "./contexts/ItemsProvider";
 import { ModalsProvider } from "./contexts/ModalsProvider";
 import { GlobalProvider } from "./contexts/GlobalContext";
 import Navbar from "./components/Navbar";
-import { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewLPModal, ViewModal } from "./components/Modal";
+import { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewModal } from "./components/Modal";
 import AdminPage from "./pages/Admin";
 import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
@@ -43,7 +41,6 @@ function App() {
         <SignUpModal />
         <SessionModal />
         <LicensePlateModal />
-        <ViewLPModal />
         <ViewModal />
         <Routes>
           {admin && (

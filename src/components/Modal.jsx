@@ -504,7 +504,7 @@ const LicensePlateModal = () => {
               type="text"
               id="licensePlateId"
               className="form-control"
-              placeholder="XX.XXX or XXXX ..."
+              placeholder="XXXX"
               value={licensePlateId}
               onChange={(e) => setLicensePlateId(e.target.value)}
               required
@@ -540,71 +540,6 @@ const LicensePlateModal = () => {
           <div className="text-center mt-4">
             <button type="submit" className="btn btn-primary">Register</button>
           </div>
-        </form>
-      </div>
-    </Modal>
-  );
-}
-
-const ViewLPModal = () => {
-  const { closeModal } = useContext(ModalsContext);
-  const [licensePlateId, setLicensePlateId] = useState("");
-  const [meanOfTransport, setMeanOfTransport] = useState("");
-  const [userId, setUserId] = useState(localStorage.getItem(""));
-  const [licensePlateProvince, setLicensePlateProvince] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  const handleSubmitLP = async (e) => {
-    e.preventDefault();
-
-    const response = await fetch(`http://localhost:8082/license_plate/${licensePlateId}`);
-    const data = await response.json();
-    setMeanOfTransport(data.meanOfTransport);
-    setUserId(data.userName);
-    setLicensePlateProvince(data.province_id);
-    if (response.ok) {
-      alert("Tìm kiếm thành công biển số xe!");
-      setSuccess(true);
-    } else {
-      alert("Tìm kiếm thất bại!");
-    }
-  }
-
-  return (
-    <Modal type={ModalTypes.VIEW_PLATE} title="Find License Plate">
-      <div className="modal-body">
-        <h2>Tìm biển số xe</h2>
-        <form onSubmit={handleSubmitLP}>
-          <div className="form-group">
-            <label htmlFor="licensePlateId">License Plate Number</label>
-            <input
-              type="text"
-              id="licensePlateId"
-              className="form-control"
-              placeholder="XX.XXX or XXXX ..."
-              onChange={(e) => setLicensePlateId(e.target.value)}
-              required
-            />
-          </div>
-          <div className="text-center mt-4">
-            <button type="submit" className="btn btn-primary">Find</button>
-          </div>
-          {(success) && (
-            <div>
-              <div className="form-group">
-                <label htmlFor="licensePlateId">License Plate Id: {licensePlateId}</label>
-              </div>
-              <div className="form-group">
-                <label htmlFor="meanOfTransport">Mean of Transport: {meanOfTransport}</label>
-              </div>
-              <div className="form-group">
-                <label htmlFor="licensePlateProvince">Province Code: {licensePlateProvince}</label>
-              </div>
-              <div className="form-group">
-                <label htmlFor="userId">User Id: {userId}</label>
-              </div>
-            </div>
-          )}
         </form>
       </div>
     </Modal>
@@ -1225,4 +1160,4 @@ const ViewModal = () => {
   );
 }
 
-export { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewLPModal, ViewModal };
+export { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewModal };

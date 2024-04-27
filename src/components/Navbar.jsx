@@ -39,10 +39,6 @@ const Navbar = ({ admin }) => {
     openModal(ModalTypes.SIGN_IN);
   }
 
-  const handleViewLP = () => {
-    openModal(ModalTypes.VIEW_PLATE);
-  }
-
   const handleSignOut = () => {
     setUser("");
     localStorage.removeItem("username");
@@ -107,7 +103,6 @@ const Navbar = ({ admin }) => {
               {!admin() && (
                 <div>
                   <button onClick={handleLP} className="btn btn-secondary me-2">Register License Plate</button>
-                  <button onClick={handleViewLP} className="btn btn-secondary me-2">License Plate</button>
                 </div>
               )}
             </div>
