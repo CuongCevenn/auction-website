@@ -140,74 +140,86 @@ const SessionModal = () => {
   }
 
   return (
-    <Modal type={ModalTypes.SESSION} title="Create Session">
-      <form onSubmit={handleSubmitSession}>
-        <div className="form-group">
-          <label htmlFor="licensePlateId">License Plate Number</label>
-          <input
-            type="text"
-            id="licensePlateId"
-            className="form-control"
-            placeholder="XXXXX or XXXX ..."
-            value={licensePlateId}
-            onChange={(e) => setLicensePlateId(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="beginningTime">Beginning Time</label>
-          <input
-            type="text"
-            id="beginningTime"
-            className="form-control"
-            placeholder="YYYY-MM-DD HH:mm:ss"
-            onChange={handleBeginningTime}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="endingTime">Ending Time</label>
-          <input
-            type="text"
-            id="endingTime"
-            className="form-control"
-            placeholder="YYYY-MM-DD HH:mm:ss"
-            onChange={handleEndingTime}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="startingPrice">Starting Price</label>
-          <input
-            type="number"
-            id="startingPrice"
-            className="form-control"
-            placeholder="1000..."
-            value={startingPrice}
-            onChange={(e) => setStartingPrice(e.target.value)}
-            required
-          />
-        </div>
-        {error && (
-          <div className="alert alert-danger" role="alert">
-            {error}
-          </div>
-        )}
-        <div className="text-center mt-4">
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{
-              maxWidth: '150px', // Giới hạn chiều rộng của nút
-              padding: '0.5rem 1rem', // Chỉnh sửa padding
-              fontSize: '0.9rem', // Giảm kích thước chữ
-            }}
-          >
-            Create Session
-          </button>
-        </div>
-      </form>
-    </Modal>
+<Modal type={ModalTypes.SESSION} title="Create Session">
+  <form onSubmit={handleSubmitSession} style={{ textAlign: 'left', padding: '20px' }}>
+    <div className="form-group" style={{ marginBottom: '15px' }}>
+      <label htmlFor="licensePlateId" style={{ fontWeight: 'bold', color: '#333' }}>License Plate Number</label>
+      <input
+        type="text"
+        id="licensePlateId"
+        className="form-control"
+        placeholder="XXXXX or XXXX ..."
+        value={licensePlateId}
+        onChange={(e) => setLicensePlateId(e.target.value)}
+        required
+        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+      />
+    </div>
+
+    <div className="form-group" style={{ marginBottom: '15px' }}>
+      <label htmlFor="beginningTime" style={{ fontWeight: 'bold', color: '#333' }}>Beginning Time</label>
+      <input
+        type="text"
+        id="beginningTime"
+        className="form-control"
+        placeholder="YYYY-MM-DD HH:mm:ss"
+        onChange={handleBeginningTime}
+        required
+        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+      />
+    </div>
+
+    <div className="form-group" style={{ marginBottom: '15px' }}>
+      <label htmlFor="endingTime" style={{ fontWeight: 'bold', color: '#333' }}>Ending Time</label>
+      <input
+        type="text"
+        id="endingTime"
+        className="form-control"
+        placeholder="YYYY-MM-DD HH:mm:ss"
+        onChange={handleEndingTime}
+        required
+        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+      />
+    </div>
+
+    <div className="form-group" style={{ marginBottom: '15px' }}>
+      <label htmlFor="startingPrice" style={{ fontWeight: 'bold', color: '#333' }}>Starting Price</label>
+      <input
+        type="number"
+        id="startingPrice"
+        className="form-control"
+        placeholder="1000..."
+        value={startingPrice}
+        onChange={(e) => setStartingPrice(e.target.value)}
+        required
+        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+      />
+    </div>
+
+    {error && (
+      <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
+        {error}
+      </div>
+    )}
+
+    <div className="text-center" style={{ marginTop: '20px' }}>
+      <button
+        type="submit"
+        className="btn btn-primary"
+        style={{
+          maxWidth: '150px',
+          padding: '10px 20px', // Tăng padding
+          fontSize: '14px', // Kích thước chữ vừa phải
+          borderRadius: '6px', // Bo góc
+          transition: 'background-color 0.3s',
+        }}
+      >
+        Create Session
+      </button>
+    </div>
+  </form>
+</Modal>
+
 
   );
 }

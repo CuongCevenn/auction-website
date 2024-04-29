@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './SearchBar.css'; // Đảm bảo rằng bạn đã nhập CSS mới
 
 const SearchBar = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -11,19 +12,19 @@ const SearchBar = ({ onSearch }) => {
     // Xử lý khi nhấn nút tìm kiếm
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Gọi hàm tìm kiếm được truyền từ component cha và truyền cho nó giá trị của searchTerm
-        onSearch(searchTerm);
+        onSearch(searchTerm); // Gọi hàm tìm kiếm với giá trị của searchTerm
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="searchbar-form">
             <input
                 type="text"
-                placeholder="Nhập từ khóa tìm kiếm"
+                className="searchbar-input"
+                placeholder="Nhập từ khóa tìm kiếm..."
                 value={searchTerm}
                 onChange={handleChange}
             />
-            <button type="submit">Tìm kiếm</button>
+            <button type="submit" className="searchbar-button">Tìm kiếm</button>
         </form>
     );
 };
