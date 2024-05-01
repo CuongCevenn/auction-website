@@ -10,12 +10,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ModalsProvider } from "./contexts/ModalsProvider";
 import { GlobalProvider } from "./contexts/GlobalContext";
 import Navbar from "./components/Navbar";
-import { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewModal } from "./components/Modal";
+import { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewModal, RechargeModal } from "./components/Modal";
 import AdminPage from "./pages/Admin";
 import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
 import Session from "./pages/Session";
 import UserManage from "./pages/UserManage";
+import CompletedPage from "./pages/Completed";
 
 function App() {
   function isAdmin() {
@@ -42,16 +43,20 @@ function App() {
         <SessionModal />
         <LicensePlateModal />
         <ViewModal />
-        <Routes>
-          {admin && (
+        <RechargeModal />
+        {admin && (
+          <Routes>
             <Route path={import.meta.env.BASE_URL} Component={AdminPage} />
-          )}
-          {!admin && (
+            <Route path={import.meta.env.BASE_URL + "completed"} Component={CompletedPage} />
+            <Route path={import.meta.env.BASE_URL + "admin"} Component={UserManage} />
+          </Routes>
+        )}
+        {!admin && (
+          <Routes>
             <Route path={import.meta.env.BASE_URL} Component={Dashboard} />
-          )}
-          <Route path={import.meta.env.BASE_URL + "session"} Component={Session} />
-          <Route path={import.meta.env.BASE_URL + "admin"} Component={UserManage} />
-        </Routes>
+            <Route path={import.meta.env.BASE_URL + "session"} Component={Session} />
+          </Routes>
+        )}
       </Router>
       <Footer />
     </Providers>

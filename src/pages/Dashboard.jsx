@@ -32,11 +32,26 @@ function Dashboard() {
         return item.status === "ACTIVE";
     }
 
+    function com(item) {
+        return item.status === "COMPLETE";
+    }
+
     function search(searchItem, LPId) {
         if (searchItem !== "") {
-            return searchItem === LPId;
+            return LPId.includes(searchItem);
         }
         return true;
+    }
+
+    function ready(timeString) {
+        const inputTime = new Date(timeString);
+        const currentTime = Date.now();
+
+        if (inputTime.getTime() > currentTime) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Hàm xử lý khi người dùng nhấn vào nút "View"
@@ -107,6 +122,7 @@ function Dashboard() {
             try {
                 const response = await fetch("http://localhost:8082/auction_session");
                 const data = await response.json();
+                console.log(data);
                 setItems(data);
             } catch (error) {
                 console.error('Error fetching auction sessions:', error);
@@ -136,29 +152,40 @@ function Dashboard() {
 
             <div className="custom-div-1">
                 {items.map((item) => (
-                    <div key={item.id} className="custom-div-button-1">
-                        <div className="custom-div-div-1">
-                            <p className="custom-p-1">Auction ID: {item.auctionId}</p>
-                            <p className="custom-p-1">Beginning Time: {item.beginningTime}</p>
-                            <p className="custom-p-1">License plate: {item.licensePlateId}</p>
-                            <p className="custom-p-1">Status: {item.status}</p>
-                        </div>
+                    <div>
+                        {((act(item) || checkUser(item.userId)) && !com(item) && search(searchItem, item.licensePlateId)) && (
+                            <div key={item.id} className="custom-div-button-1">
+                                <div className="custom-div-div-1">
+                                    <p className="custom-p-1">Auction ID: {item.auctionId}</p>
+                                    <p className="custom-p-1">Beginning Time: {item.beginningTime}</p>
+                                    <p className="custom-p-1">License plate: {item.licensePlateId}</p>
+                                    <p className="custom-p-1">Status: {item.status}</p>
+                                </div>
 
-                        <Button
-                            variant="outline-secondary"
-                            className="custom-button"
-                            onClick={() => handleViewClick(item.auctionId)}
-                        >
-                            View
-                        </Button>
+                                {signIn() && (
+                                    <div>
+                                        <Button
+                                            variant="outline-secondary"
+                                            className="custom-button"
+                                            onClick={() => handleViewClick(item.auctionId)}
+                                            disabled={!act(item) || ready(item.beginningTime)}
+                                        >
+                                            View
+                                        </Button>
 
-                        <Button
-                            variant="danger"
-                            className="custom-button-delete"
-                            onClick={() => handleDelete(item)}
-                        >
-                            Delete
-                        </Button>
+                                        {checkUser(item.userId) && (
+                                            <Button
+                                                variant="danger"
+                                                className="custom-button-delete"
+                                                onClick={() => handleDelete(item)}
+                                            >
+                                                Delete
+                                            </Button>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>

@@ -23,18 +23,9 @@ function UserManage() {
     }, [key]);
 
     const handleViewButton = (item) => {
-        // localStorage.setItem("tempUsername", item.username);
-        // localStorage.setItem("tempAccountType", item.accountType);
-        // localStorage.setItem("tempFullName", item.fullname);
-        // localStorage.setItem("tempContactNumber", item.contactNumber);
-        // localStorage.setItem("tempAddress", item.address);
-        // localStorage.setItem("tempIdentityNumber", item.identityNumber);
-        // localStorage.setItem("tempEmail", item.email);
-        // localStorage.setItem("tempPassword", item.password);
+        const { username, accountType, contactNumber, fullname, address, identityNumber, email, password, balance } = item;
 
-        const { username, accountType, contactNumber, fullname, address, identityNumber, email, password } = item;
-
-        openModal(ModalTypes.VIEW_USER, { username, accountType, contactNumber, fullname, address, identityNumber, email, password });
+        openModal(ModalTypes.VIEW_USER, { username, accountType, contactNumber, fullname, address, identityNumber, email, password, balance });
         setKey(Date.now());
     }
 
@@ -51,7 +42,8 @@ function UserManage() {
                     "contactNumber": item.contactNumber,
                     "address": item.address,
                     "identityNumber": item.identityNumber,
-                    "email": item.email
+                    "email": item.email,
+                    "balance": item.balance
                 })
             };
 
@@ -95,6 +87,13 @@ function UserManage() {
         }
     }
 
+    const handleRecharge = async (item) => {
+        const { username, accountType, contactNumber, fullname, address, identityNumber, email, password, balance } = item;
+
+        openModal(ModalTypes.RECHARGE, { username, accountType, contactNumber, fullname, address, identityNumber, email, password, balance });
+        setKey(Date.now());
+    }
+
     return (
         <div className="user-manage-container">
             <span className="custom-span-1">User Management</span>
@@ -114,6 +113,11 @@ function UserManage() {
                                     className="custom-button"
                                     onClick={() => handleViewButton(item)}
                                 >View</Button>
+                                <Button
+                                    variant="outline-secondary"
+                                    className="custom-button"
+                                    onClick={() => handleRecharge(item)}
+                                >Recharge</Button>
                                 <Button
                                     variant="outline-secondary"
                                     className="custom-button"

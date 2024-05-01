@@ -7,5 +7,6 @@ export const ModalTypes = {
   UPDATE: "update account",
   VIEW_PLATE: "view license plate",
   VIEW_USER: "view user account",
+  RECHARGE: "recharge balance",
   NONE: null,
 };

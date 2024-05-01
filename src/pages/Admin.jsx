@@ -2,11 +2,9 @@ import { Button } from "react-bootstrap";
 import React from 'react';
 import { useNavigate } from "react-router";
 import { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
 import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
 import './Dashboard.css';
-import { useGlobal } from "../contexts/GlobalContext";
 
 function AdminPage() {
   const [items, setItems] = useState([]);
@@ -32,6 +30,10 @@ function AdminPage() {
 
   function act(item) {
     return item.status === "ACTIVE";
+  }
+
+  function com(item) {
+    return item.status === "COMPLETE";
   }
 
   useEffect(() => {
@@ -145,45 +147,55 @@ function AdminPage() {
     openModal(ModalTypes.SESSION);
   }
 
+  const handleCompleted = () => {
+    navigate(import.meta.env.BASE_URL + "completed");
+  }
+
   return (
     <div className="App">
       <span className="custom-span-1">Auction Session</span>
       <br />
       {signIn() && (
-        <button onClick={handleSession} className="btn btn-primary me-2" >Create Session</button>
+        <div>
+          <button onClick={handleSession} className="btn btn-primary me-2" >Create Session</button>
+          <button onClick={handleCompleted} className="btn btn-primary me-2" >Completed Session</button>
+        </div>
       )}
       <div className="custom-div-1">
         {items.map((item) => (
           <div>
-            <div key={item.id} className="custom-div-button-1 mb-4">
-              <div className="custom-div-div-1">
-                <p className="custom-p-1">Auction ID: {item.auctionId}</p>
-                <p className="custom-p-1">beginningTime: {item.beginningTime}</p>
-                <p className="custom-p-1">License plate: {item.licensePlateId}</p>
-                <p className="custom-p-1">Status: {item.status}</p>
-              </div>
+            {!com(item) && (
+              <div key={item.id} className="custom-div-button-1 mb-4">
+                <div className="custom-div-div-1">
+                  <p className="custom-p-1">Auction ID: {item.auctionId}</p>
+                  <p className="custom-p-1">Beginning Time: {item.beginningTime}</p>
+                  <p className="custom-p-1">License plate: {item.licensePlateId}</p>
+                  <p className="custom-p-1">Status: {item.status}</p>
+                </div>
 
-              <div>
-                <Button
-                  variant="primary"
-                  className="custom-button"
-                  onClick={() => handleSetStatus(item)}
-                  disabled={!pen(item)}
-                >Accept</Button>
-                <Button
-                  variant="secondary"
-                  className="custom-button"
-                  onClick={() => handleDenyStatus(item)}
-                  disabled={!act(item)}
-                >Deny</Button>
-              </div>
+                <div>
+                  <Button
+                    variant="primary"
+                    className="custom-button"
+                    onClick={() => handleSetStatus(item)}
+                    disabled={!pen(item)}
+                  >Accept</Button>
+                  <Button
+                    variant="secondary"
+                    className="custom-button"
+                    onClick={() => handleDenyStatus(item)}
+                    disabled={!act(item)}
+                  >Deny</Button>
+                </div>
 
-              <Button
-                variant="danger"
-                className="custom-button"
-                onClick={() => handleDelete(item)}
-              >Delete</Button>
-            </div>
+                <Button
+                  variant="danger"
+                  className="custom-button"
+                  onClick={() => handleDelete(item)}
+                >Delete</Button>
+              </div>
+            )}
+
           </div>
         ))}
       </div>

@@ -129,96 +129,96 @@ const SessionModal = () => {
 
   const handleBeginningTime = (e) => {
     const inputDateTime = e.target.value;
-    // const formattedDateTime = inputDateTime.replace(' ', 'T');
-    setBeginningTime(inputDateTime);
+    const formattedDateTime = inputDateTime.replace('T', ' ').slice(0, 19);
+    setBeginningTime(formattedDateTime + ':00');
   }
 
   const handleEndingTime = (e) => {
     const inputDateTime = e.target.value;
-    // const formattedDateTime = inputDateTime.replace(' ', 'T');
-    setEndingTime(inputDateTime);
+    const formattedDateTime = inputDateTime.replace('T', ' ').slice(0, 19);
+    setEndingTime(formattedDateTime + ':00');
   }
 
   return (
-<Modal type={ModalTypes.SESSION} title="Create Session">
-  <form onSubmit={handleSubmitSession} style={{ textAlign: 'left', padding: '20px' }}>
-    <div className="form-group" style={{ marginBottom: '15px' }}>
-      <label htmlFor="licensePlateId" style={{ fontWeight: 'bold', color: '#333' }}>License Plate Number</label>
-      <input
-        type="text"
-        id="licensePlateId"
-        className="form-control"
-        placeholder="XXXXX or XXXX ..."
-        value={licensePlateId}
-        onChange={(e) => setLicensePlateId(e.target.value)}
-        required
-        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-      />
-    </div>
+    <Modal type={ModalTypes.SESSION} title="Create Session">
+      <form onSubmit={handleSubmitSession} style={{ textAlign: 'left', padding: '20px' }}>
+        <div className="form-group" style={{ marginBottom: '15px' }}>
+          <label htmlFor="licensePlateId" style={{ fontWeight: 'bold', color: '#333' }}>License Plate Number</label>
+          <input
+            type="text"
+            id="licensePlateId"
+            className="form-control"
+            placeholder="Nhập biển số xe"
+            value={licensePlateId}
+            onChange={(e) => setLicensePlateId(e.target.value)}
+            required
+            style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+          />
+        </div>
 
-    <div className="form-group" style={{ marginBottom: '15px' }}>
-      <label htmlFor="beginningTime" style={{ fontWeight: 'bold', color: '#333' }}>Beginning Time</label>
-      <input
-        type="text"
-        id="beginningTime"
-        className="form-control"
-        placeholder="YYYY-MM-DD HH:mm:ss"
-        onChange={handleBeginningTime}
-        required
-        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-      />
-    </div>
+        <div className="form-group" style={{ marginBottom: '15px' }}>
+          <label htmlFor="beginningTime" style={{ fontWeight: 'bold', color: '#333' }}>Beginning Time</label>
+          <input
+            type="datetime-local"
+            id="beginningTime"
+            className="form-control"
+            // placeholder="YYYY-MM-DD HH:mm:ss"
+            onChange={(e) => handleBeginningTime(e)}
+            required
+            style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+          />
+        </div>
 
-    <div className="form-group" style={{ marginBottom: '15px' }}>
-      <label htmlFor="endingTime" style={{ fontWeight: 'bold', color: '#333' }}>Ending Time</label>
-      <input
-        type="text"
-        id="endingTime"
-        className="form-control"
-        placeholder="YYYY-MM-DD HH:mm:ss"
-        onChange={handleEndingTime}
-        required
-        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-      />
-    </div>
+        <div className="form-group" style={{ marginBottom: '15px' }}>
+          <label htmlFor="endingTime" style={{ fontWeight: 'bold', color: '#333' }}>Ending Time</label>
+          <input
+            type="datetime-local"
+            id="endingTime"
+            className="form-control"
+            // placeholder="YYYY-MM-DD HH:mm:ss"
+            onChange={(e) => handleEndingTime(e)}
+            required
+            style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+          />
+        </div>
 
-    <div className="form-group" style={{ marginBottom: '15px' }}>
-      <label htmlFor="startingPrice" style={{ fontWeight: 'bold', color: '#333' }}>Starting Price</label>
-      <input
-        type="number"
-        id="startingPrice"
-        className="form-control"
-        placeholder="1000..."
-        value={startingPrice}
-        onChange={(e) => setStartingPrice(e.target.value)}
-        required
-        style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-      />
-    </div>
+        <div className="form-group" style={{ marginBottom: '15px' }}>
+          <label htmlFor="startingPrice" style={{ fontWeight: 'bold', color: '#333' }}>Starting Price</label>
+          <input
+            type="number"
+            id="startingPrice"
+            className="form-control"
+            placeholder="1000..."
+            value={startingPrice}
+            onChange={(e) => setStartingPrice(e.target.value)}
+            required
+            style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+          />
+        </div>
 
-    {error && (
-      <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
-        {error}
-      </div>
-    )}
+        {error && (
+          <div className="alert alert-danger" role="alert" style={{ textAlign: 'center' }}>
+            {error}
+          </div>
+        )}
 
-    <div className="text-center" style={{ marginTop: '20px' }}>
-      <button
-        type="submit"
-        className="btn btn-primary"
-        style={{
-          maxWidth: '150px',
-          padding: '10px 20px', // Tăng padding
-          fontSize: '14px', // Kích thước chữ vừa phải
-          borderRadius: '6px', // Bo góc
-          transition: 'background-color 0.3s',
-        }}
-      >
-        Create Session
-      </button>
-    </div>
-  </form>
-</Modal>
+        <div className="text-center" style={{ marginTop: '20px' }}>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            style={{
+              maxWidth: '150px',
+              padding: '10px 20px', // Tăng padding
+              fontSize: '14px', // Kích thước chữ vừa phải
+              borderRadius: '6px', // Bo góc
+              transition: 'background-color 0.3s',
+            }}
+          >
+            Create Session
+          </button>
+        </div>
+      </form>
+    </Modal>
 
 
   );
@@ -499,6 +499,11 @@ const LicensePlateModal = () => {
     closeModal();
     if (response.ok) {
       alert("Đăng ký thành công biển số xe!");
+
+      const response2 = await fetch(`http://localhost:8082/license_plate`);
+      const data = await response2.json();
+      localStorage.setItem("license", JSON.stringify(data));
+
     } else {
       alert("Đăng ký thất bại!");
       console.log("Tạo thất bại!");
@@ -1020,6 +1025,7 @@ const ViewModal = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const [error, setError] = useState("");
+  const [balance, setBalance] = useState("");
   const [modalKey, setModalKey] = useState(0);
 
   useEffect(() => {
@@ -1032,6 +1038,7 @@ const ViewModal = () => {
     setIdentityNumber(activeItem.identityNumber);
     setEmail(activeItem.email);
     setPassword(activeItem.password);
+    setBalance(activeItem.balance);
   }, [currentModal]);
 
   const handleUpdate = async (e) => {
@@ -1041,7 +1048,7 @@ const ViewModal = () => {
       return;
     }
     const requestOptions = {
-      method: 'POST',
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         "username": username,
@@ -1051,10 +1058,11 @@ const ViewModal = () => {
         "contactNumber": contactNumber,
         "address": address,
         "identityNumber": identityNumber,
-        "email": email
+        "email": email,
+        "balance": balance
       })
     };
-    const response = await fetch('http://localhost:8082/user', requestOptions);
+    const response = await fetch(`http://localhost:8082/user/${username}`, requestOptions);
     const result = await response.json();
     closeModal();
     if (response.ok) {
@@ -1090,6 +1098,18 @@ const ViewModal = () => {
               type="text"
               className="form-control"
               value={accountType}
+              required
+              disabled
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="balance-input">Balance</label>
+            <input
+              autoFocus
+              id="balance-input"
+              type="text"
+              className="form-control"
+              value={balance}
               required
               disabled
             />
@@ -1172,4 +1192,116 @@ const ViewModal = () => {
   );
 }
 
-export { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewModal };
+const RechargeModal = () => {
+  const { activeItem, closeModal, currentModal } = useContext(ModalsContext);
+  const [username, setUsername] = useState("");
+  const [accountType, setAccountType] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [identityNumber, setIdentityNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("");
+  const [balance, setBalance] = useState("");
+  const [modalKey, setModalKey] = useState(0);
+  const [money, setMoney] = useState("");
+
+  useEffect(() => {
+    setModalKey(Date.now());
+    setUsername(activeItem.username);
+    setAccountType(activeItem.accountType);
+    setFullName(activeItem.fullname);
+    setContactNumber(activeItem.contactNumber);
+    setAddress(activeItem.address);
+    setIdentityNumber(activeItem.identityNumber);
+    setEmail(activeItem.email);
+    setPassword(activeItem.password);
+    setBalance(activeItem.balance);
+  }, [currentModal]);
+
+  const handleUpdate = async (e) => {
+    let temp = parseInt(money) + parseInt(balance);
+    // setBalance(temp);
+    if (!money) {
+      setError("All fields are necessary.");
+      return;
+    }
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "username": username,
+        "password": password,
+        "accountType": accountType,
+        "fullname": fullName,
+        "contactNumber": contactNumber,
+        "address": address,
+        "identityNumber": identityNumber,
+        "email": email,
+        "balance": temp
+      })
+    };
+    const response = await fetch(`http://localhost:8082/user/${username}`, requestOptions);
+    const result = await response.json();
+    closeModal();
+    if (response.ok) {
+      alert("Update successful!");
+    } else {
+      alert("Update failed!");
+    }
+  };
+
+  return (
+    <Modal type={ModalTypes.RECHARGE} title="Recharge balance">
+      <div className="modal-body">
+        <p>Enter amount to recharge</p>
+        <form onSubmit={handleUpdate}>
+          <div className="form-group">
+            <label htmlFor="username-input">Username</label>
+            <input
+              id="username-input"
+              type="text"
+              className="form-control"
+              value={username}
+              required
+              disabled
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="balance-input">Balance</label>
+            <input
+              autoFocus
+              id="balance-input"
+              type="number"
+              className="form-control"
+              onChange={(e) => setMoney(e.target.value)}
+              value={money}
+              required
+            />
+          </div>
+
+          {error && (
+            <div className="text-danger">
+              {error}
+            </div>
+          )}
+
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="btn btn-primary"
+            >
+              Recharge
+            </button>
+          </div>
+        </form>
+      </div>
+    </Modal>
+  );
+}
+
+export { SignUpModal, SessionModal, LicensePlateModal, SignInModal, UpdateModal, ViewModal, RechargeModal };

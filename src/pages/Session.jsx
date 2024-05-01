@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react';
+import { useNavigate } from "react-router";
 import './Session.css';
 
 function Session() {
@@ -12,8 +13,19 @@ function Session() {
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const [licensePlateId, setLicensePlateId] = useState(localStorage.getItem("licensePlateId"));
   const priceRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    const response = await fetch(`http://localhost:8082/auction_session/${auctionId}`);
+    const data = await response.json();
+
+    if (data.status === "COMPLETE") {
+      alert("Phiên đấu giá đã kết thúc");
+      navigate(import.meta.env.BASE_URL);
+      return;
+    }
+
+
     if (!checkPrice()) {
       alert("Minimum increase is 100");
       return;
