@@ -1,0 +1,74 @@
+/* CompletedPage.css */
+
+/* Container chính */
+.completed-container {
+    display: flex;
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+    align-items: center; /* Căn giữa nội dung */
+    padding: 20px; /* Khoảng cách xung quanh */
+    background-color: #f0f0f0; /* Màu nền xám nhạt */
+    border-radius: 10px; /* Bo góc mềm mại */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ */
+}
+
+/* Tiêu đề chính */
+.header {
+    text-align: center; /* Căn giữa tiêu đề */
+    width: 100%; /* Chiếm toàn bộ chiều ngang */
+    margin-bottom: 20px; /* Khoảng cách phía dưới */
+}
+
+.custom-span-1 {
+    font-size: 40px; /* Kích thước chữ */
+    color: #333; /* Màu xám đậm */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+}
+
+/* Bố cục hai cột */
+.custom-two-columns {
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: row; /* Bố cục theo chiều ngang */
+    justify-content: space-between; /* Cân bằng giữa hai cột */
+    align-items: flex-start; /* Căn trên */
+    width: 80%; /* Chiếm toàn bộ chiều ngang */
+}
+
+/* Mỗi cột */
+.custom-column {
+    flex: 1; /* Chiếm tỷ lệ bằng nhau */
+    padding: 20px; /* Khoảng cách bên trong */
+    background-color: rgba(211, 211, 211, 0.5); /* Màu nền trong suốt */
+    border-radius: 10px; /* Bo góc mềm mại */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    margin: 0 10px; /* Khoảng cách giữa các cột */
+}
+
+/* Tiêu đề của mỗi cột */
+.custom-column-title {
+    font-size: 24px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+    text-align: center; /* Căn giữa */
+    color: #333; /* Màu xám đậm */
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Đường viền dưới */
+    margin-bottom: 10px; /* Khoảng cách phía dưới */
+}
+
+/* Kiểu dáng cho mỗi mục */
+.custom-div-button-1 {
+    padding: 15px; /* Tạo khoảng cách bên trong */
+    border: 1px solid rgba(153, 153, 153, 0.5); /* Viền nhẹ */
+    border-radius: 10px; /* Bo góc mềm mại */
+    background-color: rgba(224, 224, 224, 0.5); /* Màu nền nhạt */
+    margin-bottom: 15px; /* Khoảng cách giữa các mục */
+}
+
+.custom-div-div-1 {
+    padding: 10px; /* Tạo khoảng cách bên trong */
+    border-radius: 8px; /* Bo góc mềm mại */
+}
+
+.custom-p-1 {
+    font-size: 16px; /* Kích thước chữ vừa phải */
+    color: #555; /* Màu xám đậm */
+    margin: 10px 0; /* Khoảng cách giữa các dòng */
+}

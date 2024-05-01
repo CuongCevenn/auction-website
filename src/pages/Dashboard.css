@@ -41,7 +41,7 @@
 }
 
 .create-session-button {
-    font-size: 14px; /* Kích thước chữ vừa phải */
+    font-size: 16px; /* Kích thước chữ vừa phải */
     padding: 8px 16px; /* Điều chỉnh padding để giữ kích thước gọn gàng */
     border-radius: 6px; /* Bo góc */
     background-color: #007bff; /* Màu xanh lam */
@@ -49,16 +49,29 @@
     transition: all 0.3s; /* Hiệu ứng mượt mà */
 }
 
-.custom-button {
-    font-size: 14px; /* Đồng bộ với nút khác */
+.custom-button-normal {
+    font-size: 20px; /* Đồng bộ với nút khác */
     padding: 8px 16px;
     border-radius: 6px;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: #007bff;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp */
+    margin-right: 5px;
+}
+.custom-button:hover {
+    background-color: #0056b3; /* Màu đậm hơn khi hover */
 }
 
 .custom-button-delete {
-    font-size: 20px; /* Đồng bộ với nút khác */
-    padding: 8px 16px; /* Giữ cùng kích thước với các nút khác */
-    background-color: rgba(255, 0, 0, 0.5); /* Màu đỏ */
-    border-radius: 6px; /* Bo góc */
+    font-size: 20px; /* Kích thước chữ hợp lý */
+    padding: 8px 16px; /* Padding hợp lý */
+    border-radius: 6px; /* Bo góc mềm mại */
+    background-color: rgba(255, 0, 0, 0.5); /* Màu đỏ khi có thể click */
+    color: white; /* Chữ trắng */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp */
+    cursor: pointer; /* Con trỏ khi hover */
+    margin-right: 5px;
+}
+
+.custom-button-delete:hover {
+    background-color: rgba(255, 0, 0, 0.8); /* Đỏ đậm hơn khi hover */
 }

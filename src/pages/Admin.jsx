@@ -152,20 +152,33 @@ function AdminPage() {
   }
 
   return (
-    <div className="App">
+    <div className="dashboard-container">
       <span className="custom-span-1">Auction Session</span>
       <br />
       {signIn() && (
         <div>
-          <button onClick={handleSession} className="btn btn-primary me-2" >Create Session</button>
-          <button onClick={handleCompleted} className="btn btn-primary me-2" >Completed Session</button>
-        </div>
+        <Button 
+          className="create-session-button" 
+          style={{ marginRight: '20px' }}
+          onClick={() => openModal(ModalTypes.SESSION)}
+        >
+          Create Session
+        </Button>
+        <Button 
+          className="create-session-button" 
+          onClick={() => navigate("/completed")}
+        >
+          Completed Session
+        </Button>
+      </div>
+      
       )}
       <div className="custom-div-1">
         {items.map((item) => (
+          // eslint-disable-next-line react/jsx-key
           <div>
             {!com(item) && (
-              <div key={item.id} className="custom-div-button-1 mb-4">
+              <div key={item.id} className="custom-div-button-1">
                 <div className="custom-div-div-1">
                   <p className="custom-p-1">Auction ID: {item.auctionId}</p>
                   <p className="custom-p-1">Beginning Time: {item.beginningTime}</p>
@@ -176,13 +189,13 @@ function AdminPage() {
                 <div>
                   <Button
                     variant="primary"
-                    className="custom-button"
+                    className="custom-button-normal"
                     onClick={() => handleSetStatus(item)}
                     disabled={!pen(item)}
                   >Accept</Button>
                   <Button
                     variant="secondary"
-                    className="custom-button"
+                    className="custom-button-delete"
                     onClick={() => handleDenyStatus(item)}
                     disabled={!act(item)}
                   >Deny</Button>
@@ -190,7 +203,7 @@ function AdminPage() {
 
                 <Button
                   variant="danger"
-                  className="custom-button"
+                  className="custom-button-delete"
                   onClick={() => handleDelete(item)}
                 >Delete</Button>
               </div>

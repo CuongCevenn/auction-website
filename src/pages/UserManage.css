@@ -59,14 +59,15 @@
     font-size: 16px; /* Tăng cỡ chữ */
     font-weight: bold; /* Chữ đậm */
     padding: 12px 20px;
-    background-color: rgba(128, 128, 128, 0.4); /* Màu xám trung bình với nền trong suốt */
+    background-color: rgba(128, 128, 128, 0.8); /* Màu xám trung bình với nền trong suốt */
     color: #fff; /* Chữ trắng */
     border-radius: 10px; /* Bo góc */
     border: 1px solid rgba(255, 255, 255, 0.2); /* Viền trong suốt */
     transition: background-color 0.3s, border-color 0.3s; /* Hiệu ứng chuyển màu */
+    margin-right: 5px;
 }
 
 .custom-button:hover {
-    background-color: rgba(128, 128, 128, 0.8); /* Hiệu ứng khi hover */
+    background-color: #007bff; /* Hiệu ứng khi hover */
     border-color: rgba(255, 255, 255, 0.5); /* Viền thay đổi khi hover */
 }

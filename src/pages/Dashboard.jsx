@@ -152,6 +152,7 @@ function Dashboard() {
 
             <div className="custom-div-1">
                 {items.map((item) => (
+                    // eslint-disable-next-line react/jsx-key
                     <div>
                         {((act(item) || checkUser(item.userId)) && !com(item) && search(searchItem, item.licensePlateId)) && (
                             <div key={item.id} className="custom-div-button-1">
@@ -166,7 +167,7 @@ function Dashboard() {
                                     <div>
                                         <Button
                                             variant="outline-secondary"
-                                            className="custom-button"
+                                            className="custom-button-normal"
                                             onClick={() => handleViewClick(item.auctionId)}
                                             disabled={!act(item) || ready(item.beginningTime)}
                                         >
