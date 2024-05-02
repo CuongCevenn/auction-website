@@ -715,7 +715,7 @@ const SignUpModal = () => {
           )}
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+            <button type="button" className="btn btn-secondary" style={{ marginRight: '20px' }} onClick={closeModal}>
               Cancel
             </button>
             <button
@@ -857,7 +857,7 @@ const SignInModal = () => {
           )}
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+            <button type="button" className="btn btn-secondary" style={{ marginRight: '20px' }} onClick={closeModal}>
               Cancel
             </button>
             <button
@@ -995,7 +995,7 @@ const UpdateModal = () => {
           )}
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+            <button type="button" className="btn btn-secondary"  style={{ marginRight: '20px' }} onClick={closeModal}>
               Cancel
             </button>
             <button
@@ -1173,7 +1173,7 @@ const ViewModal = () => {
           )}
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+            <button type="button" className="btn btn-secondary" style={{ marginRight: '20px' }} onClick={closeModal}>
               Cancel
             </button>
             <button
@@ -1285,7 +1285,7 @@ const RechargeModal = () => {
           )}
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={closeModal}>
+            <button type="button" className="btn btn-secondary" style={{ marginRight: '20px' }} onClick={closeModal}>
               Cancel
             </button>
             <button

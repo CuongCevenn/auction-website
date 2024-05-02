@@ -75,6 +75,7 @@ function CompletedPage() {
                 <div className="custom-column">
                     <div className="custom-column-title">Successful Transactions</div> {/* Tiêu đề của cột */}
                     {sessions.map((item) => (
+                        // eslint-disable-next-line react/jsx-key
                         <div>
                             {(com(item) && success(item)) && (
                                 <div key={item.id} className="custom-div-button-1 mb-4">
@@ -95,6 +96,7 @@ function CompletedPage() {
                 <div className="custom-column">
                     <div className="custom-column-title">Failed Transactions</div> {/* Tiêu đề của cột */}
                     {sessions.map((item) => (
+                        // eslint-disable-next-line react/jsx-key
                         <div>
                             {(com(item) && !success(item)) && (
                                 <div key={item.id} className="custom-div-button-1 mb-4">
