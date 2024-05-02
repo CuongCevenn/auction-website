@@ -166,7 +166,6 @@ function Dashboard() {
                                 {signIn() && (
                                     <div>
                                         <Button
-                                            variant="outline-secondary"
                                             className="custom-button-normal"
                                             onClick={() => handleViewClick(item.auctionId)}
                                             disabled={!act(item) || ready(item.beginningTime)}

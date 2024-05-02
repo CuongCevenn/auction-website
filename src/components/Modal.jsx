@@ -6,32 +6,29 @@ import { ModalsContext } from "../contexts/ModalsProvider";
 import { ModalTypes } from "../utils/modalTypes";
 import { Status } from "../utils/status";
 import { useGlobal } from "../contexts/GlobalContext";
+import './Modal.css'; // Đảm bảo đã thêm CSS cho modal
 
 const Modal = ({ type, title, children }) => {
   const { closeModal, currentModal } = useContext(ModalsContext);
 
-  if (type !== currentModal) return null;
+  if (type !== currentModal) return null; // Chỉ hiển thị modal khi đúng loại
 
   return ReactDOM.createPortal(
-    <div
-      className="modal fade show"
-      style={{ display: "block" }}
-    // onClick={closeModal}
-    >
+    <div className="modal-overlay" onClick={closeModal}> {/* Lớp phủ mờ */}
       <div
-        className="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-        onClick={(e) => e.stopPropagation()}
+        className="modal-dialog modal-dialog-centered"
+        onClick={(e) => e.stopPropagation()} // Ngăn sự kiện click chồng chéo
       >
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">{title}</h5>
             <button className="btn-close" onClick={closeModal} />
           </div>
-          {children}
+          <div className="modal-body">{children}</div> {/* Nội dung chính của modal */}
         </div>
       </div>
     </div>,
-    document.body
+    document.body 
   );
 };
 
@@ -770,7 +767,7 @@ const SignInModal = () => {
         }
       }
       fetchData();
-      window.location.reload();
+      //window.location.reload();
     }
 
     setSubmitted(false);
