@@ -157,21 +157,21 @@ function AdminPage() {
       <br />
       {signIn() && (
         <div>
-        <Button 
-          className="create-session-button" 
-          style={{ marginRight: '20px' }}
-          onClick={() => openModal(ModalTypes.SESSION)}
-        >
-          Create Session
-        </Button>
-        <Button 
-          className="create-session-button" 
-          onClick={() => navigate("/completed")}
-        >
-          Completed Session
-        </Button>
-      </div>
-      
+          <Button
+            className="create-session-button"
+            style={{ marginRight: '20px' }}
+            onClick={handleSession}
+          >
+            Create Session
+          </Button>
+          <Button
+            className="create-session-button"
+            onClick={handleCompleted}
+          >
+            Completed Session
+          </Button>
+        </div>
+
       )}
       <div className="custom-div-1">
         {items.map((item) => (

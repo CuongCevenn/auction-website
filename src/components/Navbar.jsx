@@ -54,6 +54,10 @@ const Navbar = ({ admin }) => {
     window.location.reload();
   }
 
+  const handleHome = () => {
+    navigate(import.meta.env.BASE_URL);
+  }
+
   const handleInfo = () => {
     openModal(ModalTypes.UPDATE);
   }
@@ -78,9 +82,10 @@ const Navbar = ({ admin }) => {
             width="30"
             height="24"
             className="d-inline-block align-text-top"
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: "10px", cursor: "pointer" }}
+            onClick={handleHome}
           />
-          <span style={{ fontWeight: "bold" }}>The Auction App</span>
+          <span style={{ fontWeight: "bold", cursor: "pointer" }} onClick={handleHome}>The Auction App</span>
         </div>
         <div className="row row-cols-auto" style={{ alignItems: "center" }}>
 

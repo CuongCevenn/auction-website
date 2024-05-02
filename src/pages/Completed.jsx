@@ -74,37 +74,40 @@ function CompletedPage() {
                 {/* Cột Giao dịch thành công */}
                 <div className="custom-column">
                     <div className="custom-column-title">Successful Transactions</div> {/* Tiêu đề của cột */}
-                    {sessions
-                        .filter((item) => item.status === "COMPLETE")
-                        .filter((item) => transactions.some((t) => t.auctionId === item.auctionId))
-                        .map((item) => (
-                            <div key={item.id} className="custom-div-button-1 mb-4">
-                                <div className="custom-div-div-1">
-                                    <p className="custom-p-1">Auction ID: {item.auctionId}</p>
-                                    <p className="custom-p-1">Winner: {getWinner(item)}</p>
-                                    <p className="custom-p-1">License plate: {item.licensePlateId}</p>
-                                    <p className="custom-p-1">Amount: {getAmount(item)}</p>
-                                    <p className="custom-p-1">Date: {getDate(item)}</p>
+                    {sessions.map((item) => (
+                        <div>
+                            {(com(item) && success(item)) && (
+                                <div key={item.id} className="custom-div-button-1 mb-4">
+                                    <div className="custom-div-div-1">
+                                        <p className="custom-p-1">Auction ID: {item.auctionId}</p>
+                                        <p className="custom-p-1">Winner: {getWinner(item)}</p>
+                                        <p className="custom-p-1">License plate: {item.licensePlateId}</p>
+                                        <p className="custom-p-1">Amount: {getAmount(item)}</p>
+                                        <p className="custom-p-1">Date: {getDate(item)}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            )}
+                        </div>
+                    ))}
                 </div>
 
                 {/* Cột Đấu giá thất bại */}
                 <div className="custom-column">
                     <div className="custom-column-title">Failed Transactions</div> {/* Tiêu đề của cột */}
-                    {sessions
-                        .filter((item) => item.status === "COMPLETE")
-                        .filter((item) => !transactions.some((t) => t.auctionId === item.auctionId))
-                        .map((item) => (
-                            <div key={item.id} className="custom-div-button-1 mb-4">
-                                <div className="custom-div-div-1">
-                                    <p className="custom-p-1">Auction ID: {item.auctionId}</p>
-                                    <p className="custom-p-1">License plate: {item.licensePlateId}</p>
-                                    <p className="custom-p-1">Date: {item.endingTime}</p>
+                    {sessions.map((item) => (
+                        <div>
+                            {(com(item) && !success(item)) && (
+                                <div key={item.id} className="custom-div-button-1 mb-4">
+                                    <div className="custom-div-div-1">
+                                        <p className="custom-p-1">Auction ID: {item.auctionId}</p>
+                                        <p className="custom-p-1">Winner: None</p>
+                                        <p className="custom-p-1">License plate: {item.licensePlateId}</p>
+                                        <p className="custom-p-1">Date: {item.endingTime}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
