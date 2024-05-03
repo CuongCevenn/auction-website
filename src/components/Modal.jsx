@@ -14,7 +14,7 @@ const Modal = ({ type, title, children }) => {
   if (type !== currentModal) return null; // Chỉ hiển thị modal khi đúng loại
 
   return ReactDOM.createPortal(
-    <div className="modal-overlay" onClick={closeModal}> {/* Lớp phủ mờ */}
+    <div className="modal-overlay"> {/* Lớp phủ mờ */}
       <div
         className="modal-dialog modal-dialog-centered"
         onClick={(e) => e.stopPropagation()} // Ngăn sự kiện click chồng chéo
@@ -28,7 +28,7 @@ const Modal = ({ type, title, children }) => {
         </div>
       </div>
     </div>,
-    document.body 
+    document.body
   );
 };
 
@@ -767,7 +767,7 @@ const SignInModal = () => {
         }
       }
       fetchData();
-      //window.location.reload();
+      window.location.reload();
     }
 
     setSubmitted(false);
@@ -1243,9 +1243,9 @@ const RechargeModal = () => {
     const result = await response.json();
     closeModal();
     if (response.ok) {
-      alert("Update successful!");
+      alert("Recharge successful!");
     } else {
-      alert("Update failed!");
+      alert("Recharge failed!");
     }
   };
 

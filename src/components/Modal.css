@@ -1,32 +1,47 @@
 /* CSS cho modal */
 .modal-overlay {
-    position: fixed; /* Đặt ở vị trí cố định */
+    position: fixed;
+    /* Đặt ở vị trí cố định */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* Màu đen mờ */
-    z-index: 1000; /* Đảm bảo nằm trên cùng */
-    display: flex; /* Sử dụng flexbox */
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Màu đen mờ */
+    z-index: 1000;
+    /* Đảm bảo nằm trên cùng */
+    display: flex;
+    /* Sử dụng flexbox */
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
 }
 
 .modal-content {
-    background: white; /* Nền trắng cho modal */
-    border-radius: 10px; /* Bo góc mềm mại */
-    padding: 20px; /* Tạo khoảng cách */
-    z-index: 1001; /* Cao hơn lớp phủ */
+    background: white;
+    /* Nền trắng cho modal */
+    border-radius: 10px;
+    /* Bo góc mềm mại */
+    padding: 20px;
+    /* Tạo khoảng cách */
+    z-index: 1001;
+    /* Cao hơn lớp phủ */
     width: 500px;
 }
 
 .modal-header {
-    display: flex; /* Sử dụng flexbox */
-    justify-content: space-between; /* Căn đều giữa tiêu đề và nút đóng */
+    display: flex;
+    /* Sử dụng flexbox */
+    justify-content: space-between;
+    /* Căn đều giữa tiêu đề và nút đóng */
 }
 
 .btn-close {
-    background: transparent; /* Nền trong suốt */
-    border: none; /* Không viền */
-    cursor: pointer; /* Con trỏ tay */
+    background: transparent;
+    /* Nền trong suốt */
+    border: none;
+    /* Không viền */
+    cursor: pointer;
+    /* Con trỏ tay */
 }
