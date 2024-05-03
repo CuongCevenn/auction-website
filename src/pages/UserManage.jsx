@@ -100,6 +100,7 @@ function UserManage() {
             <br />
             <div className="custom-div-1">
                 {items.map((item) => (
+                    // eslint-disable-next-line react/jsx-key
                     <div>
                         {(item.accountType !== "admin") && (
                             <div key={item.username} className="custom-div-button-1">
