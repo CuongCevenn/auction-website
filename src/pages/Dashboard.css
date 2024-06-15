@@ -1,0 +1,77 @@
+/* Dashboard.css */
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0; /* Màu xám nhạt */
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px; /* Bo góc */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ */
+}
+
+.header {
+    width: 100%; /* Đảm bảo phần tiêu đề chiếm toàn bộ chiều ngang */
+    text-align: center; /* Căn giữa */
+}
+
+.searchbar-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Đặt thanh tìm kiếm ở bên phải */
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều ngang */
+    margin-bottom: 20px; /* Tạo khoảng cách giữa các phần */
+}
+
+.custom-span-1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    color: #333; /* Màu xám đậm */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng nhẹ */
+}
+
+.custom-div-1 {
+    width: 80%; /* Tăng độ rộng để chứa nội dung rộng hơn */
+    text-align: left; /* Căn trái */
+    margin: 20px; /* Khoảng cách xung quanh */
+    color: #444; /* Màu xám */
+    background-color: rgba(211, 211, 211, 0.5); /* Màu xám với nền trong suốt */
+    padding: 20px; /* Khoảng cách trong */
+    border-radius: 10px; /* Bo góc */
+}
+
+.create-session-button {
+    font-size: 16px; /* Kích thước chữ vừa phải */
+    padding: 8px 16px; /* Điều chỉnh padding để giữ kích thước gọn gàng */
+    border-radius: 6px; /* Bo góc */
+    background-color: #007bff; /* Màu xanh lam */
+    color: white;
+    transition: all 0.3s; /* Hiệu ứng mượt mà */
+}
+
+.custom-button-normal {
+    font-size: 20px; /* Đồng bộ với nút khác */
+    padding: 8px 16px;
+    border-radius: 6px;
+    background-color: #007bff;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp */
+    margin-right: 5px;
+}
+.custom-button:hover {
+    background-color: #0056b3; /* Màu đậm hơn khi hover */
+}
+
+.custom-button-delete {
+    font-size: 20px; /* Kích thước chữ hợp lý */
+    padding: 8px 16px; /* Padding hợp lý */
+    border-radius: 6px; /* Bo góc mềm mại */
+    background-color: rgba(255, 0, 0, 0.5); /* Màu đỏ khi có thể click */
+    color: white; /* Chữ trắng */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp */
+    cursor: pointer; /* Con trỏ khi hover */
+    margin-right: 5px;
+}
+
+.custom-button-delete:hover {
+    background-color: rgba(255, 0, 0, 0.8); /* Đỏ đậm hơn khi hover */
+}

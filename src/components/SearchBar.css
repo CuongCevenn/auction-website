@@ -1,0 +1,38 @@
+/* SearchBar.css */
+
+.searchbar-form {
+    display: flex; /* Sử dụng flex để sắp xếp ngang */
+    align-items: center; /* Canh giữa */
+    border-bottom: 2px solid #ccc; /* Viền dưới nhẹ nhàng */
+    padding: 10px; /* Khoảng cách */
+    background-color: transparent; /* Nền trong suốt */
+}
+
+.searchbar-input {
+    flex: 1; /* Chiếm toàn bộ không gian còn lại */
+    border: none; /* Loại bỏ viền bao quanh */
+    padding: 8px; /* Padding để tạo không gian cho nội dung */
+    border-radius: 5px; /* Bo góc mềm mại */
+    font-size: 16px; /* Cỡ chữ phù hợp */
+    background-color: transparent; /* Nền trong suốt */
+    outline: none; /* Loại bỏ outline khi focus */
+}
+
+.searchbar-input:focus {
+    border-bottom: 2px solid #007bff; /* Đổi màu viền khi focus */
+    transition: border-color 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.searchbar-button {
+    background-color: #007bff; /* Màu xanh chủ đạo */
+    color: white; /* Chữ trắng */
+    border: none; /* Loại bỏ viền */
+    border-radius: 5px; /* Bo góc mềm mại */
+    padding: 8px 16px; /* Padding cho nút */
+    cursor: pointer; /* Con trỏ dạng trỏ tay */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.searchbar-button:hover {
+    background-color: #0056b3; /* Thay đổi màu khi hover */
+}

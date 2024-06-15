@@ -1,0 +1,125 @@
+/* Session.css */
+.session-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 50%;
+    text-align: center;
+  }
+  
+  .session-title {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .session-label {
+    font-weight: bold;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .session-info {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .session-bid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .session-bid input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .session-bid button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .session-bid button:hover {
+    background-color: #0056b3;
+  }/* Session.css */
+.session-container {
+  font-family: Arial, sans-serif;
+  padding: 30px; /* Tăng padding */
+  background-color: #f5f5f5; /* Màu nền nhẹ */
+  border-radius: 12px; /* Bo góc nhiều hơn */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng mạnh hơn */
+  margin: 30px auto; /* Tăng khoảng cách xung quanh */
+  width: 60%; /* Tăng chiều rộng */
+  text-align: center; /* Căn giữa */
+}
+
+.session-title {
+  color: #333; /* Màu chữ đậm */
+  font-size: 28px; /* Tăng cỡ chữ */
+  font-weight: bold;
+  margin-bottom: 25px; /* Tăng khoảng cách dưới */
+}
+
+.session-label {
+  font-weight: bold;
+  color: #555; /* Màu xám đậm hơn */
+  margin: 15px 0; /* Tăng khoảng cách dọc */
+  display: block; /* Đảm bảo mỗi nhãn trên một dòng riêng */
+}
+
+.session-info {
+  font-size: 18px; /* Tăng cỡ chữ */
+  color: #666;
+  text-align: left; /* Căn lề trái */
+  margin: 10px 0; /* Khoảng cách giữa các mục */
+}
+
+.session-bid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px; /* Tăng khoảng cách phía trên */
+}
+
+.session-bid input {
+  width: 80%; /* Thu hẹp một chút */
+  padding: 12px; /* Tăng padding */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Tăng bo góc */
+  font-size: 18px; /* Tăng cỡ chữ */
+  margin-bottom: 12px; /* Tăng khoảng cách dưới */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+.session-bid button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px; /* Tăng padding */
+  border: none;
+  border-radius: 6px; /* Tăng bo góc */
+  font-size: 18px; /* Tăng cỡ chữ */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.session-bid button:hover {
+  background-color: #0056b3;
+}
+
+  

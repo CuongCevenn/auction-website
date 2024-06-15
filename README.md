@@ -1,4 +1,5 @@
-# auction-website
-Website for auction app
+# Auction Website
 
-Hiên code chính đang ở branch master
+Website đấu giá biển số xe
+
+Nguyễn Đình Cường - 21020118
